@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -13,7 +13,7 @@
       --rose2: #f2a6b7;
       --cream: #fff5f6;
       --gold: #d4a373;
-      --card-bg: rgba(255, 255, 255, 0.88);
+      --card-bg: rgba(255, 255, 255, 0.9);
     }
     * {
       box-sizing: border-box;
@@ -29,7 +29,76 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
+      position: relative;
     }
+
+    /* Roaming Ambient Hearts Container */
+    #hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    /* Freely Roaming Hearts */
+    .roaming-heart {
+      position: absolute;
+      user-select: none;
+      pointer-events: none;
+      opacity: 0;
+      animation: roamAround var(--roam-duration) ease-in-out infinite alternate,
+                 fadeInOut var(--fade-duration) ease-in-out infinite alternate;
+    }
+
+    @keyframes roamAround {
+      0% {
+        transform: translate(0, 0) scale(0.8) rotate(0deg);
+      }
+      33% {
+        transform: translate(var(--move-x1), var(--move-y1)) scale(1.1) rotate(25deg);
+      }
+      66% {
+        transform: translate(var(--move-x2), var(--move-y2)) scale(0.9) rotate(-20deg);
+      }
+      100% {
+        transform: translate(var(--move-x3), var(--move-y3)) scale(1.15) rotate(15deg);
+      }
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      20% { opacity: var(--max-opacity, 0.75); }
+      80% { opacity: var(--max-opacity, 0.75); }
+      100% { opacity: 0; }
+    }
+
+    /* Heart Blast Explosion Particles */
+    .blast-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      user-select: none;
+      animation: blastExplode var(--blast-time) cubic-bezier(0.12, 0.89, 0.32, 1) forwards;
+    }
+
+    @keyframes blastExplode {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.4);
+      }
+      70% {
+        opacity: 0.95;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(var(--scale-end)) rotate(var(--spin));
+      }
+    }
+
     .hero {
       min-height: 100vh;
       display: flex;
@@ -39,14 +108,15 @@
       text-align: center;
       padding: 30px 20px;
       position: relative;
+      z-index: 2;
     }
     .hero::before {
       content: "🌸";
       font-size: 2.5rem;
-      animation: float 3s ease-in-out infinite;
+      animation: gentleBounce 3s ease-in-out infinite;
       margin-bottom: 12px;
     }
-    @keyframes float {
+    @keyframes gentleBounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
@@ -82,6 +152,8 @@
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(192, 67, 104, 0.25);
       transition: transform 0.2s, background 0.2s;
+      position: relative;
+      z-index: 2;
     }
     .btn:active {
       transform: scale(0.97);
@@ -107,6 +179,8 @@
       max-width: 620px;
       margin: 0 auto;
       padding: 20px 20px 60px;
+      position: relative;
+      z-index: 2;
     }
     section {
       margin-bottom: 45px;
@@ -171,7 +245,7 @@
       gap: 14px;
     }
     .photo-card {
-      height: 230px;
+      height: 250px;
       border-radius: 16px;
       overflow: hidden;
       background: rgba(255, 255, 255, 0.7);
@@ -204,7 +278,7 @@
       position: fixed;
       right: 16px;
       bottom: 16px;
-      z-index: 100;
+      z-index: 1000;
       background: var(--card-bg);
       color: var(--rose);
       border: 1px solid var(--rose2);
@@ -223,10 +297,15 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       padding: 24px 0 10px;
+      position: relative;
+      z-index: 2;
     }
   </style>
 </head>
 <body>
+
+  <!-- Roaming floating hearts container -->
+  <div id="hearts-container"></div>
 
   <header class="hero" id="home">
     <div class="kicker">A Special Little Corner</div>
@@ -266,7 +345,7 @@
       </div>
     </section>
 
-    <!-- Photo Gallery (2 Photos) -->
+    <!-- Photo Gallery (Animatic Photos) -->
     <section>
       <div class="eyebrow">Snapshots</div>
       <h2>Cherished Moments</h2>
@@ -307,9 +386,101 @@
     const againBtn = document.getElementById('againBtn');
     const musicBtn = document.getElementById('musicBtn');
     const audio = document.getElementById('music');
+    const heartsContainer = document.getElementById('hearts-container');
 
-    // Reveal surprise and attempt audio autoplay on user interaction
+    const heartSymbols = ['❤️', '💖', '💕', '💗', '🌸', '✨', '💝', '💓'];
+
+    // 1. Spawning roaming hearts that drift all over the screen
+    function spawnRoamingHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'roaming-heart';
+      heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+
+      const startX = Math.random() * 95;
+      const startY = Math.random() * 95;
+      const size = 16 + Math.random() * 20;
+      const roamDur = 10 + Math.random() * 8;
+      const fadeDur = 5 + Math.random() * 4;
+
+      // Random multi-point floating vectors
+      const x1 = (Math.random() * 140 - 70) + 'px';
+      const y1 = (Math.random() * 140 - 70) + 'px';
+      const x2 = (Math.random() * 180 - 90) + 'px';
+      const y2 = (Math.random() * 180 - 90) + 'px';
+      const x3 = (Math.random() * 160 - 80) + 'px';
+      const y3 = (Math.random() * 160 - 80) + 'px';
+
+      heart.style.left = startX + 'vw';
+      heart.style.top = startY + 'vh';
+      heart.style.fontSize = size + 'px';
+      heart.style.setProperty('--roam-duration', roamDur + 's');
+      heart.style.setProperty('--fade-duration', fadeDur + 's');
+      heart.style.setProperty('--max-opacity', 0.45 + Math.random() * 0.4);
+      heart.style.setProperty('--move-x1', x1);
+      heart.style.setProperty('--move-y1', y1);
+      heart.style.setProperty('--move-x2', x2);
+      heart.style.setProperty('--move-y2', y2);
+      heart.style.setProperty('--move-x3', x3);
+      heart.style.setProperty('--move-y3', y3);
+
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, (fadeDur * 2) * 1000);
+    }
+
+    // Keep 15-20 hearts actively roaming around
+    for (let i = 0; i < 15; i++) {
+      setTimeout(spawnRoamingHeart, i * 350);
+    }
+    setInterval(spawnRoamingHeart, 1200);
+
+    // 2. Heart Blast Fireworks function
+    function createHeartBlast(x, y, count = 35) {
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'blast-heart';
+        p.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+        p.style.left = x + 'px';
+        p.style.top = y + 'px';
+        p.style.fontSize = (18 + Math.random() * 22) + 'px';
+
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 70 + Math.random() * 160;
+        const dx = Math.cos(angle) * speed + 'px';
+        const dy = (Math.sin(angle) * speed - 20) + 'px';
+        const blastTime = (0.8 + Math.random() * 0.6) + 's';
+        const spin = (Math.random() * 360 - 180) + 'deg';
+        const scaleEnd = (1.1 + Math.random() * 0.8);
+
+        p.style.setProperty('--dx', dx);
+        p.style.setProperty('--dy', dy);
+        p.style.setProperty('--blast-time', blastTime);
+        p.style.setProperty('--spin', spin);
+        p.style.setProperty('--scale-end', scaleEnd);
+
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 1400);
+      }
+    }
+
+    // 3. User interaction: Heart blast on every tap/click
+    window.addEventListener('click', (e) => {
+      if (e.target === openBtn || e.target === musicBtn) return;
+      createHeartBlast(e.clientX, e.clientY, 14);
+    });
+
+    // 4. Surprise Button: Double blast burst + music trigger
     openBtn.addEventListener('click', () => {
+      const rect = openBtn.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      createHeartBlast(centerX, centerY, 45);
+      setTimeout(() => createHeartBlast(centerX - 60, centerY - 40, 25), 180);
+      setTimeout(() => createHeartBlast(centerX + 60, centerY - 40, 25), 320);
+
       content.classList.remove('hidden');
       content.classList.add('reveal');
       content.scrollIntoView({ behavior: 'smooth' });
@@ -340,4 +511,4 @@
 </body>
 </html>
 
-  
+      
