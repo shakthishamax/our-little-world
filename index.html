@@ -1,30 +1,343 @@
- <div class="paper"><p style="font-size:24px;color:var(--rose);margin:0 0 8px">“Distance means so little…”</p><p class="lead">…when someone means so much.</p></div>
- </section>
- <section>
-  <div class="eyebrow">The beginning of us</div><h2>Our little story</h2>
-  <p class="lead">A few moments that mean the world to me. Replace these examples with your own memories.</p>
-  <div class="timeline">
-   <article class="moment"><small>THE FIRST HELLO · ADD DATE</small><h3>Where it all began</h3><p>I didn't know then that one conversation could become such a special part of my life.</p></article>
-   <article class="moment"><small>THE MOMENT · ADD DATE</small><h3>When you became my person</h3><p>Somewhere along the way, talking to you became my favourite part of the day.</p></article>
-   <article class="moment"><small>OUR NEXT CHAPTER</small><h3>Until we're together again</h3><p>More memories, more laughter, and one day, fewer goodbyes.</p></article>
-  </div>
- </section>
- <section>
-  <div class="eyebrow">Little snapshots</div><h2>Our memories</h2>
-  <p class="lead">Tap into this section and add your favourite photos. The sample tiles are placeholders.</p>
-  <div class="gallery">
-   <div class="photo"><span>Add photo 1</span></div><div class="photo"><span>Add photo 2</span></div><div class="photo"><span>Add photo 3</span></div>
-  </div>
- </section>
- <section>
-  <div class="eyebrow">A hundred little things</div><h2>Reasons I adore you</h2>
-  <p class="lead">Here are a few to start. Add your own tiny, specific reasons — those are the ones she'll treasure most.</p>
-  <div class="reasons">
-   <div class="reason">Your smile can change my whole day.</div><div class="reason">You make ordinary moments special.</div>
-   <div class="reason">I love the way you laugh.</div><div class="reason">You make distance feel worth it.</div>
-   <div 
-Until then, keep a little piece of my heart with you.
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff5f6">
+  <title>Happy Birthday Priya ❤️</title>
+  <style>
+    :root {
+      --ink: #4a2e35;
+      --muted: #8c6b73;
+      --rose: #c04368;
+      --rose2: #f2a6b7;
+      --cream: #fff5f6;
+      --gold: #d4a373;
+      --card-bg: rgba(255, 255, 255, 0.88);
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #fff5f6 0%, #fdecef 50%, #fce4e8 100%);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px 20px;
+      position: relative;
+    }
+    .hero::before {
+      content: "🌸";
+      font-size: 2.5rem;
+      animation: float 3s ease-in-out infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .kicker {
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--rose);
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: clamp(28px, 6vw, 44px);
+      font-weight: 700;
+      color: var(--rose);
+      margin: 0 0 12px;
+      line-height: 1.25;
+    }
+    .names {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .btn {
+      padding: 14px 28px;
+      background: var(--rose);
+      color: #fff;
+      border: none;
+      border-radius: 99px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(192, 67, 104, 0.25);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn:active {
+      transform: scale(0.97);
+    }
+    .btn.outline {
+      background: transparent;
+      color: var(--rose);
+      border: 1.5px solid var(--rose);
+      box-shadow: none;
+      margin-top: 15px;
+    }
+    .hidden {
+      display: none !important;
+    }
+    .reveal {
+      animation: rise 0.8s ease both;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    main {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 20px 20px 60px;
+    }
+    section {
+      margin-bottom: 45px;
+    }
+    .eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--rose);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    h2 {
+      font-size: 24px;
+      margin: 0 0 16px;
+      color: var(--ink);
+    }
+    .paper {
+      background: var(--card-bg);
+      border: 1px solid rgba(242, 166, 183, 0.45);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 28px rgba(192, 67, 104, 0.08);
+      backdrop-filter: blur(8px);
+    }
+    .letter p {
+      margin: 0 0 14px;
+      font-size: 15px;
+      color: var(--ink);
+    }
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .moment {
+      padding: 16px 20px;
+      background: var(--card-bg);
+      border-left: 4px solid var(--rose);
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+    }
+    .moment small {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--rose);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .moment h3 {
+      margin: 4px 0 6px;
+      font-size: 17px;
+    }
+    .moment p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .photo-card {
+      height: 230px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(242, 166, 183, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 6px 16px rgba(192, 67, 104, 0.07);
+    }
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .reasons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .reason {
+      padding: 14px 18px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      font-size: 14px;
+      border: 1px solid rgba(242, 166, 183, 0.3);
+      color: var(--ink);
+    }
+    #musicBtn {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 100;
+      background: var(--card-bg);
+      color: var(--rose);
+      border: 1px solid var(--rose2);
+      border-radius: 99px;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 6px 18px rgba(192, 67, 104, 0.15);
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 24px 0 10px;
+    }
+  </style>
+</head>
+<body>
 
-Always yours,
-YOUR NAME ♥</div>
-   </section>
+  <header class="hero" id="home">
+    <div class="kicker">A Special Little Corner</div>
+    <h1>Happy Birthday, My Love Priya ❤️</h1>
+    <div class="names">Shakthi & Priya</div>
+    <button class="btn" id="openBtn">Open Your Surprise ✨</button>
+  </header>
+
+  <main id="content" class="hidden">
+    <!-- Love Letter Section -->
+    <section>
+      <div class="eyebrow">A Letter For You</div>
+      <h2>My Dearest Priya,</h2>
+      <div class="paper letter">
+        <p>Happy Birthday to the most special person in my life!</p>
+        <p>On your special day, I wanted to create a little world just for you—somewhere you can always visit and be reminded of how deeply loved and cherished you are.</p>
+        <p>There is so much in my heart that words sometimes fall short of capturing, but every single day with you is a blessing I never take for granted. I hope this year brings you all the happiness, peace, and smiles that your beautiful heart deserves.</p>
+        <p style="margin-top: 18px; font-weight: 600; color: var(--rose);">Forever yours,<br>Shakthi</p>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section>
+      <div class="eyebrow">Our Journey</div>
+      <h2>Our Story</h2>
+      <div class="timeline">
+        <article class="moment">
+          <small>October 15</small>
+          <h3>The Day I First Met You</h3>
+          <p>The unforgettable moment that changed everything and started this beautiful chapter of my life.</p>
+        </article>
+        <article class="moment">
+          <small>Today</small>
+          <h3>Celebrating You</h3>
+          <p>Celebrating the wonderful person you are today and all the adventures waiting ahead for us.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Photo Gallery (2 Photos) -->
+    <section>
+      <div class="eyebrow">Snapshots</div>
+      <h2>Cherished Moments</h2>
+      <div class="gallery">
+        <div class="photo-card">
+          <img src="photo1.jpg" alt="Memory 1" onerror="this.parentElement.innerHTML='<span style=\'color:var(--muted);font-size:13px;\'>Add photo1.jpg</span>'">
+        </div>
+        <div class="photo-card">
+          <img src="photo2.jpg" alt="Memory 2" onerror="this.parentElement.innerHTML='<span style=\'color:var(--muted);font-size:13px;\'>Add photo2.jpg</span>'">
+        </div>
+      </div>
+    </section>
+
+    <!-- Reasons Section -->
+    <section>
+      <div class="eyebrow">A Few Things I Love</div>
+      <h2>Reasons I Adore You</h2>
+      <div class="reasons">
+        <div class="reason">✨ Your beautiful smile that brightens even my toughest days.</div>
+        <div class="reason">🌸 The gentle kindness and warmth you bring into everything you do.</div>
+        <div class="reason">💖 Simply because you are you—my favorite person in the world.</div>
+      </div>
+    </section>
+
+    <section style="text-align: center; margin-top: 20px;">
+      <button class="btn outline" id="againBtn">Back to Top 🌸</button>
+    </section>
+  </main>
+
+  <button id="musicBtn" title="Music controls">🎵 Music: Off</button>
+  <audio id="music" loop src="song.mp3"></audio>
+
+  <footer>Made With Love • Always & Forever</footer>
+
+  <script>
+    const openBtn = document.getElementById('openBtn');
+    const content = document.getElementById('content');
+    const againBtn = document.getElementById('againBtn');
+    const musicBtn = document.getElementById('musicBtn');
+    const audio = document.getElementById('music');
+
+    // Reveal surprise and attempt audio autoplay on user interaction
+    openBtn.addEventListener('click', () => {
+      content.classList.remove('hidden');
+      content.classList.add('reveal');
+      content.scrollIntoView({ behavior: 'smooth' });
+      playAudio();
+    });
+
+    againBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    function playAudio() {
+      audio.play().then(() => {
+        musicBtn.textContent = '🎵 Music: On';
+      }).catch(() => {
+        musicBtn.textContent = '🎵 Music: Tap to Play';
+      });
+    }
+
+    musicBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        playAudio();
+      } else {
+        audio.pause();
+        musicBtn.textContent = '🎵 Music: Off';
+      }
+    });
+  </script>
+</body>
+</html>
+
+  
