@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7e9e5">
+<title>Our Little World</title>
+<style>
+:root{--ink:#503b3b;--muted:#8b7070;--rose:#b86e78;--rose2:#e7b9b7;--cream:#fffaf6;--gold:#c6a46a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+button{font:inherit}.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:28px 20px;position:relative;overflow:hidden;background:radial-gradient(circle at 20% 15%,#fff 0,transparent 32%),linear-gradient(145deg,#f7e9e5,#f4d8d5 55%,#f9eee8)}
+.hero:before,.hero:after{content:"✦";position:absolute;color:#fff8;font-size:8rem;animation:float 8s ease-in-out infinite}.hero:before{left:5%;top:10%}.hero:after{right:6%;bottom:12%;font-size:5rem;animation-delay:-3s}
+@keyframes float{50%{transform:translateY(-18px) rotate(18deg)}}
+.kicker{letter-spacing:.28em;text-transform:uppercase;font:11px Arial,sans-serif;color:var(--rose);margin-bottom:18px}
+h1{font-size:clamp(42px,12vw,76px);font-weight:400;line-height:1.02;margin:0 0 16px}.hero p{font-size:17px;color:var(--muted);line-height:1.7;max-width:440px;margin:0 auto 28px}
+.names{font-size:clamp(22px,6vw,32px);color:var(--rose);margin:20px 0 28px}
+.btn{border:1px solid var(--rose);background:var(--rose);color:white;border-radius:99px;padding:14px 25px;cursor:pointer;box-shadow:0 8px 24px #9e586022;transition:.25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px #9e586033}.btn.outline{background:transparent;color:var(--rose)}
+.envelope{width:112px;height:76px;margin:0 auto 25px;position:relative;background:#fff7f2;border:1px solid #d9b5ad;border-radius:5px;box-shadow:0 12px 28px #8d5c5c18}
+.envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,transparent 49%,#e8c9c1 50%,transparent 51%),linear-gradient(35deg,transparent 49%,#e8c9c1 50%,transparent 51%)}
+.envelope:after{content:"♥";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--rose);font-size:23px}
+section{padding:76px 20px;max-width:850px;margin:auto;text-align:center}.eyebrow{font:11px Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--rose)}
+h2{font-size:clamp(30px,8vw,45px);font-weight:400;margin:12px 0 18px}.lead{font-size:17px;line-height:1.8;color:var(--muted);max-width:620px;margin:0 auto}
+.paper{background:#fff;border:1px solid #f0dfd9;border-radius:18px;padding:28px 22px;box-shadow:0 14px 40px #6b40400b;margin-top:28px}
+.timeline{display:grid;gap:16px;margin-top:32px;text-align:left}.moment{padding:20px 20px 20px 24px;border-left:2px solid var(--rose2);background:#fff;border-radius:0 14px 14px 0}.moment small{font:11px Arial,sans-serif;letter-spacing:.15em;color:var(--rose);text-transform:uppercase}.moment h3{font-size:22px;font-weight:400;margin:8px 0}.moment p{line-height:1.7;color:var(--muted);margin:0}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:28px}.photo{min-height:190px;border-radius:15px;background:linear-gradient(145deg,#f7e2df,#e8c6c0);display:grid;place-items:center;padding:14px;color:#89676a;overflow:hidden;position:relative}.photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.photo span{position:relative;z-index:1;background:#fff9;padding:8px 12px;border-radius:99px;font:12px Arial,sans-serif}
+.reasons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:25px}.reason{background:#fff;border:1px solid #f1e1dc;border-radius:12px;padding:16px 12px;line-height:1.5;color:#765d5d}
+.letter{font-size:18px;line-height:1.95;text-align:left;white-space:pre-line}.final{background:linear-gradient(145deg,#f8e9e5,#f3d8d6);max-width:none;padding:80px 20px}.final-inner{max-width:700px;margin:auto}
+footer{text-align:center;padding:28px;color:#a78b87;font:11px Arial,sans-serif;letter-spacing:.12em}
+.hidden{display:none!important}.reveal{animation:rise .8s ease both}@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.heart{position:fixed;bottom:-30px;pointer-events:none;z-index:5;color:#c77d86;animation:heartUp 5s linear forwards}@keyframes heartUp{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+.music{position:fixed;right:14px;bottom:14px;z-index:10;background:#fff;color:var(--rose);border:1px solid #ead2cc;border-radius:99px;padding:11px 15px;font:12px Arial,sans-serif;box-shadow:0 5px 20px #6b404018}
+@media(min-width:650px){.gallery{grid-template-columns:repeat(3,minmax(0,1fr))}.photo{min-height:230px}.reasons{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header class="hero" id="home">
+ <div>
+  <div class="kicker">A little something, made with love</div>
+  <div class="envelope" aria-hidden="true"></div>
+  <h1>For my<br><i>favourite person</i></h1>
+  <div class="names">YOUR NAME <span style="color:#c6a46a">&</span> HER NAME</div>
+  <p>Even when we're far apart, there's a little world where it's always you and me.</p>
+  <button class="btn" id="openBtn">Open your surprise ♥</button>
+ </div>
+</header>
+
+<main id="content" class="hidden">
+ <section>
+  <div class="eyebrow">Just for you</div><h2>Hello, my love.</h2>
+  <p class="lead">I wanted to make you something you could come back to whenever you miss me. It's not a grand gift. It's a small piece of my heart, made into a little website.</p>
+  <div class="paper"><p style="font-size:24px;color:var(--rose);margin:0 0 8px">“Distance means so little…”</p><p class="lead">…when someone means so much.</p></div>
+ </section>
+ <section>
+  <div class="eyebrow">The beginning of us</div><h2>Our little story</h2>
+  <p class="lead">A few moments that mean the world to me. Replace these examples with your own memories.</p>
+  <div class="timeline">
+   <article class="moment"><small>THE FIRST HELLO · ADD DATE</small><h3>Where it all began</h3><p>I didn't know then that one conversation could become such a special part of my life.</p></article>
+   <article class="moment"><small>THE MOMENT · ADD DATE</small><h3>When you became my person</h3><p>Somewhere along the way, talking to you became my favourite part of the day.</p></article>
+   <article class="moment"><small>OUR NEXT CHAPTER</small><h3>Until we're together again</h3><p>More memories, more laughter, and one day, fewer goodbyes.</p></article>
+  </div>
+ </section>
+ <section>
+  <div class="eyebrow">Little snapshots</div><h2>Our memories</h2>
+  <p class="lead">Tap into this section and add your favourite photos. The sample tiles are placeholders.</p>
+  <div class="gallery">
+   <div class="photo"><span>Add photo 1</span></div><div class="photo"><span>Add photo 2</span></div><div class="photo"><span>Add photo 3</span></div>
+  </div>
+ </section>
+ <section>
+  <div class="eyebrow">A hundred little things</div><h2>Reasons I adore you</h2>
+  <p class="lead">Here are a few to start. Add your own tiny, specific reasons — those are the ones she'll treasure most.</p>
+  <div class="reasons">
+   <div class="reason">Your smile can change my whole day.</div><div class="reason">You make ordinary moments special.</div>
+   <div class="reason">I love the way you laugh.</div><div class="reason">You make distance feel worth it.</div>
+   <div class="reason">I can be completely myself with you.</div><div class="reason">You're my favourite notification.</div>
+   <div class="reason">You make me look forward to tomorrow.</div><div class="reason">Your happiness matters to me.</div>
+   <div class="reason">Simply because you're you. ♥</div>
+  </div>
+ </section>
+ <section>
+  <div class="eyebrow">Read this whenever you miss me</div><h2>A letter from my heart</h2>
+  <div class="paper letter">My love,
+
+I wish I could be there beside you right now, but until that day comes, I hope this little page reminds you how loved you are.
+
+Thank you for being you — for the smiles, the conversations, the silly moments and all the little things that make us us.
+
+No matter how many miles are between us, I'm cheering for you, thinking of you, and looking forward to the next time I get to see you.
+
+Until then, keep a little piece of my heart with you.
+
+Always yours,
+YOUR NAME ♥</div>
+ </section>
+ <section class="final">
+  <div class="final-inner">
+   <div class="eyebrow">One last thing</div><h2>I'd choose you, in every version of this story.</h2>
+   <p class="lead">This little website will never be as beautiful as you are to me. But I hope it makes you smile.</p>
+   <p style="font-size:34px;color:var(--rose);margin:28px 0 8px">I love you ♥</p>
+   <button class="btn outline" id="againBtn">Read it all again</button>
+  </div>
+ </section>
+</main>
+<button class="music" id="musicBtn" title="Music controls">♫ Music: off</button>
+<audio id="music" loop></audio>
+<footer>MADE WITH LOVE · YOUR LITTLE WORLD</footer>
+<script>
+const openBtn=document.getElementById('openBtn'), content=document.getElementById('content');
+openBtn.addEventListener('click',()=>{content.classList.remove('hidden');content.classList.add('reveal');content.scrollIntoView({behavior:'smooth'});hearts();});
+document.getElementById('againBtn').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+function hearts(){for(let i=0;i<14;i++){const h=document.createElement('span');h.className='heart';h.textContent=['♥','♡','✦'][i%3];h.style.left=Math.random()*100+'vw';h.style.fontSize=(14+Math.random()*18)+'px';h.style.animationDuration=(3+Math.random()*3)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),6500)}}
+const audio=document.getElementById('music'), musicBtn=document.getElementById('musicBtn');
+musicBtn.addEventListener('click',async()=>{if(!audio.src){musicBtn.textContent='♫ Add music file first';return}if(audio.paused){try{await audio.play();musicBtn.textContent='♫ Music: on'}catch(e){musicBtn.textContent='♫ Tap to play'}}else{audio.pause();musicBtn.textContent='♫ Music: off'}});
+</script>
+</body></html>
