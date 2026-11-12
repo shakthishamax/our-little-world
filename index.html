@@ -4,7 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fff5f6">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
   <title>Happy Birthday Priya ❤️</title>
+
+  <!-- Confetti script for surprise celebration -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
   <style>
     :root {
       --ink: #4a2e35;
@@ -13,7 +18,7 @@
       --rose2: #f2a6b7;
       --cream: #fff5f6;
       --gold: #d4a373;
-      --card-bg: rgba(255, 255, 255, 0.9);
+      --card-bg: rgba(255, 255, 255, 0.88);
     }
     * {
       box-sizing: border-box;
@@ -29,76 +34,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
-      position: relative;
     }
-
-    /* Roaming Ambient Hearts Container */
-    #hearts-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    /* Freely Roaming Hearts */
-    .roaming-heart {
-      position: absolute;
-      user-select: none;
-      pointer-events: none;
-      opacity: 0;
-      animation: roamAround var(--roam-duration) ease-in-out infinite alternate,
-                 fadeInOut var(--fade-duration) ease-in-out infinite alternate;
-    }
-
-    @keyframes roamAround {
-      0% {
-        transform: translate(0, 0) scale(0.8) rotate(0deg);
-      }
-      33% {
-        transform: translate(var(--move-x1), var(--move-y1)) scale(1.1) rotate(25deg);
-      }
-      66% {
-        transform: translate(var(--move-x2), var(--move-y2)) scale(0.9) rotate(-20deg);
-      }
-      100% {
-        transform: translate(var(--move-x3), var(--move-y3)) scale(1.15) rotate(15deg);
-      }
-    }
-
-    @keyframes fadeInOut {
-      0% { opacity: 0; }
-      20% { opacity: var(--max-opacity, 0.75); }
-      80% { opacity: var(--max-opacity, 0.75); }
-      100% { opacity: 0; }
-    }
-
-    /* Heart Blast Explosion Particles */
-    .blast-heart {
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      user-select: none;
-      animation: blastExplode var(--blast-time) cubic-bezier(0.12, 0.89, 0.32, 1) forwards;
-    }
-
-    @keyframes blastExplode {
-      0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(0.4);
-      }
-      70% {
-        opacity: 0.95;
-      }
-      100% {
-        opacity: 0;
-        transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(var(--scale-end)) rotate(var(--spin));
-      }
-    }
-
     .hero {
       min-height: 100vh;
       display: flex;
@@ -108,15 +44,14 @@
       text-align: center;
       padding: 30px 20px;
       position: relative;
-      z-index: 2;
     }
     .hero::before {
       content: "🌸";
       font-size: 2.5rem;
-      animation: gentleBounce 3s ease-in-out infinite;
+      animation: float 3s ease-in-out infinite;
       margin-bottom: 12px;
     }
-    @keyframes gentleBounce {
+    @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
@@ -152,8 +87,6 @@
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(192, 67, 104, 0.25);
       transition: transform 0.2s, background 0.2s;
-      position: relative;
-      z-index: 2;
     }
     .btn:active {
       transform: scale(0.97);
@@ -179,8 +112,6 @@
       max-width: 620px;
       margin: 0 auto;
       padding: 20px 20px 60px;
-      position: relative;
-      z-index: 2;
     }
     section {
       margin-bottom: 45px;
@@ -210,6 +141,25 @@
       margin: 0 0 14px;
       font-size: 15px;
       color: var(--ink);
+    }
+    .counter-grid {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      font-weight: 700;
+      color: var(--rose);
+    }
+    .counter-box span {
+      font-size: 26px;
+      display: block;
+      line-height: 1.2;
+    }
+    .counter-box small {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     .timeline {
       display: flex;
@@ -245,7 +195,7 @@
       gap: 14px;
     }
     .photo-card {
-      height: 250px;
+      height: 230px;
       border-radius: 16px;
       overflow: hidden;
       background: rgba(255, 255, 255, 0.7);
@@ -278,7 +228,7 @@
       position: fixed;
       right: 16px;
       bottom: 16px;
-      z-index: 1000;
+      z-index: 100;
       background: var(--card-bg);
       color: var(--rose);
       border: 1px solid var(--rose2);
@@ -297,15 +247,10 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       padding: 24px 0 10px;
-      position: relative;
-      z-index: 2;
     }
   </style>
 </head>
 <body>
-
-  <!-- Roaming floating hearts container -->
-  <div id="hearts-container"></div>
 
   <header class="hero" id="home">
     <div class="kicker">A Special Little Corner</div>
@@ -315,6 +260,20 @@
   </header>
 
   <main id="content" class="hidden">
+    <!-- Live Counter -->
+    <section>
+      <div class="eyebrow" style="text-align: center;">Counting Every Second</div>
+      <h2 style="text-align: center;">Together For</h2>
+      <div class="paper">
+        <div class="counter-grid">
+          <div class="counter-box"><span id="days">0</span><small>Days</small></div>
+          <div class="counter-box"><span id="hours">0</span><small>Hours</small></div>
+          <div class="counter-box"><span id="mins">0</span><small>Mins</small></div>
+          <div class="counter-box"><span id="secs">0</span><small>Secs</small></div>
+        </div>
+      </div>
+    </section>
+
     <!-- Love Letter Section -->
     <section>
       <div class="eyebrow">A Letter For You</div>
@@ -345,7 +304,7 @@
       </div>
     </section>
 
-    <!-- Photo Gallery (Animatic Photos) -->
+    <!-- Photo Gallery -->
     <section>
       <div class="eyebrow">Snapshots</div>
       <h2>Cherished Moments</h2>
@@ -375,6 +334,7 @@
     </section>
   </main>
 
+  <!-- Retained the exact same audio tag pointing to song.mp3 -->
   <button id="musicBtn" title="Music controls">🎵 Music: Off</button>
   <audio id="music" loop src="song.mp3"></audio>
 
@@ -386,105 +346,34 @@
     const againBtn = document.getElementById('againBtn');
     const musicBtn = document.getElementById('musicBtn');
     const audio = document.getElementById('music');
-    const heartsContainer = document.getElementById('hearts-container');
 
-    const heartSymbols = ['❤️', '💖', '💕', '💗', '🌸', '✨', '💝', '💓'];
+    // Start date: October 15 (Update year as needed, 9 = October)
+    const startDate = new Date(2023, 9, 15, 0, 0, 0);
 
-    // 1. Spawning roaming hearts that drift all over the screen
-    function spawnRoamingHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'roaming-heart';
-      heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-
-      const startX = Math.random() * 95;
-      const startY = Math.random() * 95;
-      const size = 16 + Math.random() * 20;
-      const roamDur = 10 + Math.random() * 8;
-      const fadeDur = 5 + Math.random() * 4;
-
-      // Random multi-point floating vectors
-      const x1 = (Math.random() * 140 - 70) + 'px';
-      const y1 = (Math.random() * 140 - 70) + 'px';
-      const x2 = (Math.random() * 180 - 90) + 'px';
-      const y2 = (Math.random() * 180 - 90) + 'px';
-      const x3 = (Math.random() * 160 - 80) + 'px';
-      const y3 = (Math.random() * 160 - 80) + 'px';
-
-      heart.style.left = startX + 'vw';
-      heart.style.top = startY + 'vh';
-      heart.style.fontSize = size + 'px';
-      heart.style.setProperty('--roam-duration', roamDur + 's');
-      heart.style.setProperty('--fade-duration', fadeDur + 's');
-      heart.style.setProperty('--max-opacity', 0.45 + Math.random() * 0.4);
-      heart.style.setProperty('--move-x1', x1);
-      heart.style.setProperty('--move-y1', y1);
-      heart.style.setProperty('--move-x2', x2);
-      heart.style.setProperty('--move-y2', y2);
-      heart.style.setProperty('--move-x3', x3);
-      heart.style.setProperty('--move-y3', y3);
-
-      heartsContainer.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, (fadeDur * 2) * 1000);
+    function updateCounter() {
+      const diff = Math.max(0, new Date() - startDate);
+      document.getElementById('days').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById('hours').textContent = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      document.getElementById('mins').textContent = Math.floor((diff / (1000 * 60)) % 60);
+      document.getElementById('secs').textContent = Math.floor((diff / 1000) % 60);
     }
+    setInterval(updateCounter, 1000);
+    updateCounter();
 
-    // Keep 15-20 hearts actively roaming around
-    for (let i = 0; i < 15; i++) {
-      setTimeout(spawnRoamingHeart, i * 350);
-    }
-    setInterval(spawnRoamingHeart, 1200);
-
-    // 2. Heart Blast Fireworks function
-    function createHeartBlast(x, y, count = 35) {
-      for (let i = 0; i < count; i++) {
-        const p = document.createElement('div');
-        p.className = 'blast-heart';
-        p.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-        p.style.left = x + 'px';
-        p.style.top = y + 'px';
-        p.style.fontSize = (18 + Math.random() * 22) + 'px';
-
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 70 + Math.random() * 160;
-        const dx = Math.cos(angle) * speed + 'px';
-        const dy = (Math.sin(angle) * speed - 20) + 'px';
-        const blastTime = (0.8 + Math.random() * 0.6) + 's';
-        const spin = (Math.random() * 360 - 180) + 'deg';
-        const scaleEnd = (1.1 + Math.random() * 0.8);
-
-        p.style.setProperty('--dx', dx);
-        p.style.setProperty('--dy', dy);
-        p.style.setProperty('--blast-time', blastTime);
-        p.style.setProperty('--spin', spin);
-        p.style.setProperty('--scale-end', scaleEnd);
-
-        document.body.appendChild(p);
-        setTimeout(() => p.remove(), 1400);
-      }
-    }
-
-    // 3. User interaction: Heart blast on every tap/click
-    window.addEventListener('click', (e) => {
-      if (e.target === openBtn || e.target === musicBtn) return;
-      createHeartBlast(e.clientX, e.clientY, 14);
-    });
-
-    // 4. Surprise Button: Double blast burst + music trigger
     openBtn.addEventListener('click', () => {
-      const rect = openBtn.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-
-      createHeartBlast(centerX, centerY, 45);
-      setTimeout(() => createHeartBlast(centerX - 60, centerY - 40, 25), 180);
-      setTimeout(() => createHeartBlast(centerX + 60, centerY - 40, 25), 320);
-
       content.classList.remove('hidden');
       content.classList.add('reveal');
       content.scrollIntoView({ behavior: 'smooth' });
       playAudio();
+
+      if (window.confetti) {
+        confetti({
+          particleCount: 110,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#c04368', '#f2a6b7', '#d4a373', '#ffffff']
+        });
+      }
     });
 
     againBtn.addEventListener('click', () => {
@@ -510,5 +399,3 @@
   </script>
 </body>
 </html>
-
-      
