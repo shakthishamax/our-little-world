@@ -1,1 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Priya ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-pink: #ff4b72;
+      --deep-rose: #d6336c;
+      --soft-rose: #fff0f3;
+      --card-bg: rgba(255, 255, 255, 0.94);
+      --text-main: #33272a;
+      --text-muted: #594a4e;
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffeef2 0%, #ffd6e0 50%, #fed0dc 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #heart-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      background: white;
+      border: 2px solid var(--primary-pink);
+      color: var(--primary-pink);
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 75, 114, 0.2);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.05);
+      background: var(--primary-pink);
+      color: white;
+    }
+
+    .app-container {
+      width: 90%;
+      max-width: 620px;
+      min-height: 520px;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 40px auto;
+    }
+
+    .page {
+      display: none;
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border-radius: 26px;
+      padding: 38px 28px;
+      box-shadow: 0 16px 36px rgba(214, 51, 108, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      text-align: center;
+      animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    h1.main-title {
+      font-family: 'Great Vibes', cursive;
+      color: var(--primary-pink);
+      font-size: 2.7rem;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.04);
+    }
+
+    h2.page-title {
+      font-family: 'Caveat', cursive;
+      color: var(--deep-rose);
+      font-size: 2.3rem;
+      margin-bottom: 16px;
+    }
+
+    p.subtitle {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    p.text-body {
+      font-size: 1.02rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      white-space: pre-line;
+    }
+
+    .photo-frame {
+      width: 100%;
+      max-height: 330px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 16px 0 22px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+      border: 5px solid white;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 25px 0;
+    }
+
+    .time-box {
+      background: var(--soft-rose);
+      padding: 14px 8px;
+      border-radius: 14px;
+      border: 1px solid #ffccd5;
+    }
+
+    .time-box span {
+      display: block;
+      font-weight: 700;
+      font-size: 1.55rem;
+      color: var(--deep-rose);
+    }
+
+    .time-box label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      display: block;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 26px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, var(--primary-pink), var(--deep-rose));
+      color: white;
+      border: none;
+      padding: 13px 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(255, 75, 114, 0.3);
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 75, 114, 0.45);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--deep-rose);
+      border: 2px solid var(--deep-rose);
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      background: var(--soft-rose);
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bg-audio" loop src="song.mp3"></audio>
+  <button class="music-btn" id="musicToggle" onclick="toggleAudio()">🎵 Play Music</button>
+
+  <canvas id="heart-canvas"></canvas>
+
+  <div class="app-container">
+
+    <!-- PAGE 1 -->
+    <div class="page active" id="page-1">
+      <h1 class="main-title">Happy Birthday My Dear Love Priya (Zia Mummy❤️💋)</h1>
+      <p class="subtitle">Are u ready Zia Mummy?</p>
+      <div class="btn-group">
+        <button class="btn" onclick="nextPage(2)">Begin the Celebration</button>
+      </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page" id="page-2">
+      <h2 class="page-title">The World Has Been Blessed With You For</h2>
+      
+      <div class="timer-grid">
+        <div class="time-box"><span id="years">0</span><label>Years</label></div>
+        <div class="time-box"><span id="days">0</span><label>Days</label></div>
+        <div class="time-box"><span id="hours">0</span><label>Hours</label></div>
+        <div class="time-box"><span id="minutes">0</span><label>Minutes</label></div>
+        <div class="time-box"><span id="seconds">0</span><label>Seconds</label></div>
+        <div class="time-box"><span id="heartbeats">0</span><label>Heartbeats</label></div>
+      </div>
+
+      <p class="text-body">Every single second since November 28, 2004 has made this world so much sweeter.</p>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="nextPage(1)">Back</button>
+        <button class="btn" onclick="nextPage(3)">Next</button>
+      </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page" id="page-3">
+      <h2 class="page-title">October 15 — The Day Everything Changed</h2>
+      <div class="photo-frame">
+        <img src="photo1.jpg" alt="Memory 1" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80'">
+      </div>
+      <p class="text-body">The day you walked into my life is etched into my heart forever. Everything became brighter, happier, and filled with love.</p>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="nextPage(2)">Back</button>
+        <button class="btn" onclick="nextPage(4)">Next</button>
+      </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page" id="page-4">
+      <h2 class="page-title">Cherished Smiles</h2>
+      <div class="photo-frame">
+        <img src="photo2.jpg" alt="Memory 2" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80'">
+      </div>
+      <p class="text-body">Your smile is my absolute favorite sight in the world, Zia Mummy. Thank you for making every day special.</p>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="nextPage(3)">Back</button>
+        <button class="btn" onclick="nextPage(5)">Next</button>
+      </div>
+    </div>
+
+    <!-- PAGE 5: Featuring Your Beautiful Animated Photo -->
+    <div class="page" id="page-5">
+      <h2 class="page-title">A Million Beautiful Memories</h2>
+      <div class="photo-frame">
+        <img src="family_photo.png" alt="Family Memory" onerror="this.src='https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80'">
+      </div>
+      <p class="text-body">Through every little step, every shared giggle, and every sweet moment—you make our little world overflow with love and beautiful smiles.</p>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="nextPage(4)">Back</button>
+        <button class="btn" onclick="nextPage(6)">Next</button>
+      </div>
+    </div>
+
+    <!-- PAGE 6: Updated Title to 'Our Family' -->
+    <div class="page" id="page-6">
+      <h2 class="page-title">Our Family</h2>
+      <p class="text-body">The way you laugh, your sweet voice, your caring heart, and everything you do. 
+
+Every tiny detail about you makes you so special to me.</p>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="nextPage(5)">Back</button>
+        <button class="btn" onclick="nextPage(7)">Next</button>
+      </div>
+    </div>
+
+    <!-- PAGE 7 -->
+    <div class="page" id="page-7">
+      <h2 class="page-title">Through Every Step Together</h2>
+      <p class="text-body">From our late-night conversations to shared laughter and quiet understanding, each moment brings us closer.</p>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="nextPage(6)">Back</button>
+        <button class="btn" onclick="nextPage(8)">Next</button>
+      </div>
+    </div>
+
+    <!-- PAGE 8 -->
+    <div class="page" id="page-8">
+      <h2 class="page-title">My Safe Haven</h2>
+      <p class="text-body">In this busy world, you are my calm peace. Having you in my life gives me endless strength and joy every single day.</p>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="nextPage(7)">Back</button>
+        <button class="btn" onclick="nextPage(9)">Next</button>
+      </div>
+    </div>
+
+    <!-- PAGE 9 -->
+    <div class="page" id="page-9">
+      <h2 class="page-title">Promises From My Heart</h2>
+      <p class="text-body">I promise to always listen and understand.
+I promise to stand by you in every situation.
+I promise to cherish and care for your precious heart forever.</p>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="nextPage(8)">Back</button>
+        <button class="btn" onclick="nextPage(10)">Next</button>
+      </div>
+    </div>
+
+    <!-- PAGE 10 -->
+    <div class="page" id="page-10">
+      <h2 class="page-title">A Letter For You, Priya</h2>
+      <p class="text-body">My dearest Zia Mummy,
+
+May this birthday bring you boundless happiness, peace, good health, and everything your gentle heart desires. 
+
+Thank you for being the most loving, wonderful person in my life.</p>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="nextPage(9)">Back</button>
+        <button class="btn" onclick="nextPage(11)">Next</button>
+      </div>
+    </div>
+
+    <!-- PAGE 11 -->
+    <div class="page" id="page-11">
+      <h1 class="main-title">Forever & Always ❤️💋</h1>
+      <p class="subtitle">Happy Birthday Zia Mummy!</p>
+      <p class="text-body">Here is to celebrating you today and creating countless more memories together.</p>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="nextPage(10)">Back</button>
+        <button class="btn" onclick="blastHearts()">Shower With Love 💖</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const audio = document.getElementById('bg-audio');
+    const musicBtn = document.getElementById('musicToggle');
+
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play().then(() => {
+          musicBtn.textContent = '⏸ Pause Music';
+        }).catch(err => {
+          console.log('Audio playback waiting for interaction');
+        });
+      } else {
+        audio.pause();
+        musicBtn.textContent = '🎵 Play Music';
+      }
+    }
+
+    function nextPage(pageNumber) {
+      if (audio.paused && pageNumber === 2) {
+        audio.play().then(() => {
+          musicBtn.textContent = '⏸ Pause Music';
+        }).catch(() => {});
+      }
+
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      const targetPage = document.getElementById(`page-${pageNumber}`);
+      if (targetPage) {
+        targetPage.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    const startDate = new Date('2004-11-28T00:00:00');
+
+    function updateTimer() {
+      const now = new Date();
+      let diffMs = now - startDate;
+
+      if (diffMs < 0) diffMs = 0;
+
+      const totalSeconds = Math.floor(diffMs / 1000);
+      const totalMinutes = Math.floor(totalSeconds / 60);
+      const totalHours = Math.floor(totalMinutes / 60);
+      const totalDays = Math.floor(totalHours / 24);
+
+      const years = Math.floor(totalDays / 365.25);
+      const days = Math.floor(totalDays % 365.25);
+      const hours = totalHours % 24;
+      const minutes = totalMinutes % 60;
+      const seconds = totalSeconds % 60;
+      const heartbeats = Math.floor(totalMinutes * 75);
+
+      document.getElementById('years').innerText = years;
+      document.getElementById('days').innerText = days;
+      document.getElementById('hours').innerText = hours;
+      document.getElementById('minutes').innerText = minutes;
+      document.getElementById('seconds').innerText = seconds;
+      document.getElementById('heartbeats').innerText = heartbeats.toLocaleString();
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    const canvas = document.getElementById('heart-canvas');
+    const ctx = canvas.getContext('2d');
+    let hearts = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Heart {
+      constructor(x, y, isBurst = false) {
+        this.x = x || Math.random() * canvas.width;
+        this.y = y || canvas.height + 20;
+        this.size = Math.random() * 14 + 10;
+        this.speedY = isBurst ? (Math.random() - 0.5) * 10 : -(Math.random() * 1.6 + 1);
+        this.speedX = isBurst ? (Math.random() - 0.5) * 10 : (Math.random() - 0.5) * 1.2;
+        this.opacity = 1;
+        this.decay = isBurst ? Math.random() * 0.02 + 0.012 : 0.0035;
+        this.color = ['#ff4b72', '#ff758f', '#ffb3c1', '#d6336c'][Math.floor(Math.random() * 4)];
+      }
+
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        const topCurveHeight = this.size * 0.3;
+        ctx.moveTo(this.x, this.y + topCurveHeight);
+        ctx.bezierCurveTo(this.x, this.y, this.x - this.size / 2, this.y, this.x - this.size / 2, this.y + topCurveHeight);
+        ctx.bezierCurveTo(this.x - this.size / 2, this.y + (this.size + topCurveHeight) / 2, this.x, this.y + this.size, this.x, this.y + this.size);
+        ctx.bezierCurveTo(this.x, this.y + this.size, this.x + this.size / 2, this.y + (this.size + topCurveHeight) / 2, this.x + this.size / 2, this
