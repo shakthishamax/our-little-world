@@ -94,7 +94,7 @@
       box-shadow: 0 16px 36px rgba(214, 51, 108, 0.16);
       border: 1px solid rgba(255, 255, 255, 0.8);
       text-align: center;
-      animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: fadeIn 0.5s ease-out forwards;
     }
 
     .page.active {
@@ -104,7 +104,7 @@
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: translateY(22px) scale(0.97);
+        transform: translateY(18px) scale(0.98);
       }
       to {
         opacity: 1;
@@ -118,7 +118,6 @@
       font-size: 2.7rem;
       line-height: 1.25;
       margin-bottom: 16px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.04);
     }
 
     h2.page-title {
@@ -231,8 +230,8 @@
 </head>
 <body>
 
-  <audio id="bg-audio" loop src="song.mp3"></audio>
-  <button class="music-btn" id="musicToggle" onclick="toggleAudio()">🎵 Play Music</button>
+  <audio id="bg-audio" loop preload="auto" src="song.mp3"></audio>
+  <button class="music-btn" id="musicToggle" type="button" onclick="toggleAudio()">🎵 Play Music</button>
 
   <canvas id="heart-canvas"></canvas>
 
@@ -243,7 +242,7 @@
       <h1 class="main-title">Happy Birthday My Dear Love Priya (Zia Mummy❤️💋)</h1>
       <p class="subtitle">Are u ready Zia Mummy?</p>
       <div class="btn-group">
-        <button class="btn" onclick="nextPage(2)">Begin the Celebration</button>
+        <button class="btn" type="button" onclick="nextPage(2)">Begin the Celebration</button>
       </div>
     </div>
 
@@ -263,60 +262,60 @@
       <p class="text-body">Every single second since November 28, 2004 has made this world so much sweeter.</p>
 
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(1)">Back</button>
-        <button class="btn" onclick="nextPage(3)">Next</button>
+        <button class="btn btn-secondary" type="button" onclick="nextPage(1)">Back</button>
+        <button class="btn" type="button" onclick="nextPage(3)">Next</button>
       </div>
     </div>
 
-    <!-- PAGE 3: October 15 -->
+    <!-- PAGE 3: photo1.jpg -->
     <div class="page" id="page-3">
       <h2 class="page-title">October 15 — The Day Everything Changed</h2>
       <div class="photo-frame">
-        <img src="photo1.jpg" alt="Memory 1" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80'">
+        <img src="photo1.jpg" alt="Memory 1">
       </div>
       <p class="text-body">The day you walked into my life is etched into my heart forever. Everything became brighter, happier, and filled with love.</p>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(2)">Back</button>
-        <button class="btn" onclick="nextPage(4)">Next</button>
+        <button class="btn btn-secondary" type="button" onclick="nextPage(2)">Back</button>
+        <button class="btn" type="button" onclick="nextPage(4)">Next</button>
       </div>
     </div>
 
-    <!-- PAGE 4: Cherished Smiles -->
+    <!-- PAGE 4: photo2.jpg -->
     <div class="page" id="page-4">
       <h2 class="page-title">Cherished Smiles</h2>
       <div class="photo-frame">
-        <img src="photo2.jpg" alt="Memory 2" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80'">
+        <img src="photo2.jpg" alt="Memory 2">
       </div>
       <p class="text-body">Your smile is my absolute favorite sight in the world, Zia Mummy. Thank you for making every day special.</p>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(3)">Back</button>
-        <button class="btn" onclick="nextPage(5)">Next</button>
+        <button class="btn btn-secondary" type="button" onclick="nextPage(3)">Back</button>
+        <button class="btn" type="button" onclick="nextPage(5)">Next</button>
       </div>
     </div>
 
-    <!-- PAGE 5 (PHOTO 1 AFTER CHERISHED SMILES): Animated Couple Photo -->
+    <!-- PAGE 5: photo3.jpg -->
     <div class="page" id="page-5">
       <h2 class="page-title">You & Me Always</h2>
       <div class="photo-frame">
-        <img src="photo3.jpg" alt="Animated Romantic Photo" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80'">
+        <img src="photo3.jpg" alt="Memory 3">
       </div>
       <p class="text-body">Close to my heart, right where you belong. Every glance, every touch, and every heartbeat is always for you.</p>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(4)">Back</button>
-        <button class="btn" onclick="nextPage(6)">Next</button>
+        <button class="btn btn-secondary" type="button" onclick="nextPage(4)">Back</button>
+        <button class="btn" type="button" onclick="nextPage(6)">Next</button>
       </div>
     </div>
 
-    <!-- PAGE 6 (PHOTO 2 AFTER CHERISHED SMILES): Our Family Animated Photo -->
+    <!-- PAGE 6: photo4.jpg (Our Family) -->
     <div class="page" id="page-6">
       <h2 class="page-title">Our Family</h2>
       <div class="photo-frame">
-        <img src="family_photo.png" alt="Our Family" onerror="this.src='photo4.jpg'">
+        <img src="photo4.jpg" alt="Our Family">
       </div>
       <p class="text-body">Through every little step, every shared giggle, and every sweet moment—you make our little world overflow with love and beautiful smiles.</p>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(5)">Back</button>
-        <button class="btn" onclick="nextPage(7)">Next</button>
+        <button class="btn btn-secondary" type="button" onclick="nextPage(5)">Back</button>
+        <button class="btn" type="button" onclick="nextPage(7)">Next</button>
       </div>
     </div>
 
@@ -327,8 +326,8 @@
 
 Every tiny detail about you makes you so special to me.</p>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(6)">Back</button>
-        <button class="btn" onclick="nextPage(8)">Next</button>
+        <button class="btn btn-secondary" type="button" onclick="nextPage(6)">Back</button>
+        <button class="btn" type="button" onclick="nextPage(8)">Next</button>
       </div>
     </div>
 
@@ -337,8 +336,8 @@ Every tiny detail about you makes you so special to me.</p>
       <h2 class="page-title">Through Every Step Together</h2>
       <p class="text-body">From our late-night conversations to shared laughter and quiet understanding, each moment brings us closer.</p>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(7)">Back</button>
-        <button class="btn" onclick="nextPage(9)">Next</button>
+        <button class="btn btn-secondary" type="button" onclick="nextPage(7)">Back</button>
+        <button class="btn" type="button" onclick="nextPage(9)">Next</button>
       </div>
     </div>
 
@@ -347,8 +346,8 @@ Every tiny detail about you makes you so special to me.</p>
       <h2 class="page-title">My Safe Haven</h2>
       <p class="text-body">In this busy world, you are my calm peace. Having you in my life gives me endless strength and joy every single day.</p>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(8)">Back</button>
-        <button class="btn" onclick="nextPage(10)">Next</button>
+        <button class="btn btn-secondary" type="button" onclick="nextPage(8)">Back</button>
+        <button class="btn" type="button" onclick="nextPage(10)">Next</button>
       </div>
     </div>
 
@@ -359,8 +358,8 @@ Every tiny detail about you makes you so special to me.</p>
 I promise to stand by you in every situation.
 I promise to cherish and care for your precious heart forever.</p>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(9)">Back</button>
-        <button class="btn" onclick="nextPage(11)">Next</button>
+        <button class="btn btn-secondary" type="button" onclick="nextPage(9)">Back</button>
+        <button class="btn" type="button" onclick="nextPage(11)">Next</button>
       </div>
     </div>
 
@@ -373,8 +372,8 @@ May this birthday bring you boundless happiness, peace, good health, and everyth
 
 Thank you for being the most loving, wonderful person in my life.</p>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(10)">Back</button>
-        <button class="btn" onclick="nextPage(12)">Next</button>
+        <button class="btn btn-secondary" type="button" onclick="nextPage(10)">Back</button>
+        <button class="btn" type="button" onclick="nextPage(12)">Next</button>
       </div>
     </div>
 
@@ -384,8 +383,8 @@ Thank you for being the most loving, wonderful person in my life.</p>
       <p class="subtitle">Happy Birthday Zia Mummy!</p>
       <p class="text-body">Here is to celebrating you today and creating countless more memories together.</p>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(11)">Back</button>
-        <button class="btn" onclick="blastHearts()">Shower With Love 💖</button>
+        <button class="btn btn-secondary" type="button" onclick="nextPage(11)">Back</button>
+        <button class="btn" type="button" onclick="blastHearts()">Shower With Love 💖</button>
       </div>
     </div>
 
@@ -396,11 +395,12 @@ Thank you for being the most loving, wonderful person in my life.</p>
     const musicBtn = document.getElementById('musicToggle');
 
     function toggleAudio() {
+      if (!audio) return;
       if (audio.paused) {
         audio.play().then(() => {
           musicBtn.textContent = '⏸ Pause Music';
         }).catch(err => {
-          console.log('Audio playback waiting for interaction');
+          console.warn('Playback blocked by browser policy:', err);
         });
       } else {
         audio.pause();
@@ -409,16 +409,18 @@ Thank you for being the most loving, wonderful person in my life.</p>
     }
 
     function nextPage(pageNumber) {
-      if (audio.paused && pageNumber === 2) {
+      if (audio && audio.paused) {
         audio.play().then(() => {
           musicBtn.textContent = '⏸ Pause Music';
         }).catch(() => {});
       }
 
-      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-      const targetPage = document.getElementById(`page-${pageNumber}`);
-      if (targetPage) {
-        targetPage.classList.add('active');
+      const allPages = document.querySelectorAll('.page');
+      allPages.forEach(p => p.classList.remove('active'));
+
+      const target = document.getElementById('page-' + pageNumber);
+      if (target) {
+        target.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
@@ -428,7 +430,6 @@ Thank you for being the most loving, wonderful person in my life.</p>
     function updateTimer() {
       const now = new Date();
       let diffMs = now - startDate;
-
       if (diffMs < 0) diffMs = 0;
 
       const totalSeconds = Math.floor(diffMs / 1000);
@@ -443,12 +444,19 @@ Thank you for being the most loving, wonderful person in my life.</p>
       const seconds = totalSeconds % 60;
       const heartbeats = Math.floor(totalMinutes * 75);
 
-      document.getElementById('years').innerText = years;
-      document.getElementById('days').innerText = days;
-      document.getElementById('hours').innerText = hours;
-      document.getElementById('minutes').innerText = minutes;
-      document.getElementById('seconds').innerText = seconds;
-      document.getElementById('heartbeats').innerText = heartbeats.toLocaleString();
+      const yEl = document.getElementById('years');
+      const dEl = document.getElementById('days');
+      const hEl = document.getElementById('hours');
+      const mEl = document.getElementById('minutes');
+      const sEl = document.getElementById('seconds');
+      const hbEl = document.getElementById('heartbeats');
+
+      if (yEl) yEl.innerText = years;
+      if (dEl) dEl.innerText = days;
+      if (hEl) hEl.innerText = hours;
+      if (mEl) mEl.innerText = minutes;
+      if (sEl) sEl.innerText = seconds;
+      if (hbEl) hbEl.innerText = heartbeats.toLocaleString();
     }
 
     setInterval(updateTimer, 1000);
