@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday Priya ❤️</title>
+  <title>Happy Birthday Priya (zia mummy)❤️</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -36,7 +36,6 @@
       position: relative;
     }
 
-    /* Floating Heart Canvas */
     #heart-canvas {
       position: fixed;
       top: 0;
@@ -47,7 +46,6 @@
       z-index: 1;
     }
 
-    /* Music Player Button */
     .music-btn {
       position: fixed;
       top: 20px;
@@ -74,7 +72,6 @@
       color: white;
     }
 
-    /* Main Container */
     .app-container {
       width: 90%;
       max-width: 620px;
@@ -87,7 +84,6 @@
       margin: 40px auto;
     }
 
-    /* Individual Page Cards */
     .page {
       display: none;
       width: 100%;
@@ -116,7 +112,6 @@
       }
     }
 
-    /* Typography */
     h1.main-title {
       font-family: 'Great Vibes', cursive;
       color: var(--primary-pink);
@@ -148,7 +143,6 @@
       white-space: pre-line;
     }
 
-    /* Photo Frame with subtle float effect */
     .photo-frame {
       width: 100%;
       max-height: 330px;
@@ -164,14 +158,8 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s ease;
     }
 
-    .photo-frame img:hover {
-      transform: scale(1.03);
-    }
-
-    /* Live Counter */
     .timer-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -202,7 +190,6 @@
       display: block;
     }
 
-    /* Action Buttons */
     .btn-group {
       display: flex;
       justify-content: center;
@@ -244,7 +231,6 @@
 </head>
 <body>
 
-  <!-- Audio Element (song.mp3 from repository root) -->
   <audio id="bg-audio" loop src="song.mp3"></audio>
   <button class="music-btn" id="musicToggle" onclick="toggleAudio()">🎵 Play Music</button>
 
@@ -252,7 +238,7 @@
 
   <div class="app-container">
 
-    <!-- PAGE 1 -->
+    <!-- PAGE 1: No Chapter 1, only your custom title, subtitle, and start button -->
     <div class="page active" id="page-1">
       <h1 class="main-title">Happy Birthday My Dear Love Priya (Zia Mummy❤️💋)</h1>
       <p class="subtitle">Are u ready Zia Mummy?</p>
@@ -261,7 +247,7 @@
       </div>
     </div>
 
-    <!-- PAGE 2: The Timer from Nov 28, 2004 -->
+    <!-- PAGE 2: No Chapter 2, Timer starts from Nov 28, 2004 -->
     <div class="page" id="page-2">
       <h2 class="page-title">The World Has Been Blessed With You For</h2>
       
@@ -274,7 +260,7 @@
         <div class="time-box"><span id="heartbeats">0</span><label>Heartbeats</label></div>
       </div>
 
-      <p class="text-body">Every single second since November 28, 2004 has led to this beautiful life and our wonderful bond.</p>
+      <p class="text-body">Every single second since November 28, 2004 has made this world so much sweeter.</p>
 
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(1)">Back</button>
@@ -282,97 +268,95 @@
       </div>
     </div>
 
-    <!-- PAGE 3: The Day We Met -->
+    <!-- PAGE 3: No Chapter 3 -->
     <div class="page" id="page-3">
       <h2 class="page-title">October 15 — The Day Everything Changed</h2>
       <div class="photo-frame">
-        <img src="photo1.jpg" alt="October 15 Memory" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80'">
+        <img src="photo1.jpg" alt="Memory 1" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80'">
       </div>
-      <p class="text-body">The day our paths crossed for the very first time. Some moments are written in the stars, and that day completely transformed my world.</p>
+      <p class="text-body">The day you walked into my life is etched into my heart forever. Everything became brighter, happier, and filled with love.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(2)">Back</button>
         <button class="btn" onclick="nextPage(4)">Next</button>
       </div>
     </div>
 
-    <!-- PAGE 4: Your Precious Smile -->
+    <!-- PAGE 4: No Chapter 4 -->
     <div class="page" id="page-4">
-      <h2 class="page-title">That Beautiful Smile</h2>
+      <h2 class="page-title">Cherished Smiles</h2>
       <div class="photo-frame">
-        <img src="photo2.jpg" alt="Smiles" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80'">
+        <img src="photo2.jpg" alt="Memory 2" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80'">
       </div>
-      <p class="text-body">Whenever you smile, every worry fades away. Your happiness will always be my highest priority and my greatest joy.</p>
+      <p class="text-body">Your smile is my absolute favorite sight in the world, Zia Mummy. Thank you for making every day special.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(3)">Back</button>
         <button class="btn" onclick="nextPage(5)">Next</button>
       </div>
     </div>
 
-    <!-- PAGE 5: Little Things & Quirks -->
+    <!-- PAGE 5: No Chapter 5 -->
     <div class="page" id="page-5">
       <h2 class="page-title">The Little Things I Love</h2>
-      <p class="text-body">The way you laugh at the smallest jokes, your gentle voice, the way you care for everyone around you, and that sweet, innocent look in your eyes. 
+      <p class="text-body">The way you laugh, your sweet voice, your caring heart, and everything you do. 
 
-Every single little detail about you makes you uniquely wonderful.</p>
+Every tiny detail about you makes you so special to me.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(4)">Back</button>
         <button class="btn" onclick="nextPage(6)">Next</button>
       </div>
     </div>
 
-    <!-- PAGE 6: Our Journey So Far -->
+    <!-- PAGE 6: No Chapter 6 -->
     <div class="page" id="page-6">
       <h2 class="page-title">Through Every Step Together</h2>
-      <p class="text-body">From our late-night conversations to shared laughter and quiet moments of understanding, every single step we've taken has brought us closer. 
-
-You make ordinary days feel extraordinary.</p>
+      <p class="text-body">From our late-night conversations to shared laughter and quiet understanding, each moment brings us closer.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(5)">Back</button>
         <button class="btn" onclick="nextPage(7)">Next</button>
       </div>
     </div>
 
-    <!-- PAGE 7: My Pillar of Strength -->
+    <!-- PAGE 7: No Chapter 7 -->
     <div class="page" id="page-7">
       <h2 class="page-title">My Safe Haven</h2>
-      <p class="text-body">In this fast and busy world, you are my calm peace. Knowing you are there gives me strength, confidence, and peace of mind every single day.</p>
+      <p class="text-body">In this busy world, you are my calm peace. Having you in my life gives me endless strength and joy every single day.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(6)">Back</button>
         <button class="btn" onclick="nextPage(8)">Next</button>
       </div>
     </div>
 
-    <!-- PAGE 8: My Heartfelt Promises -->
+    <!-- PAGE 8: No Chapter 8 -->
     <div class="page" id="page-8">
       <h2 class="page-title">Promises From My Heart</h2>
-      <p class="text-body">I promise to always listen when you need an ear.
-I promise to hold your hand through high tides and calm seas.
-I promise to protect your smile and cherish your heart, always and without conditions.</p>
+      <p class="text-body">I promise to always listen and understand.
+I promise to stand by you in every situation.
+I promise to cherish and care for your precious heart forever.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(7)">Back</button>
         <button class="btn" onclick="nextPage(9)">Next</button>
       </div>
     </div>
 
-    <!-- PAGE 9: A Special Birthday Letter -->
+    <!-- PAGE 9: No Chapter 9 -->
     <div class="page" id="page-9">
       <h2 class="page-title">A Letter For You, Priya</h2>
       <p class="text-body">My dearest Zia Mummy,
 
-May this birthday open doors to pure happiness, glowing health, and all the dreams your heart carries. 
+May this birthday bring you boundless happiness, peace, good health, and everything your gentle heart desires. 
 
-Thank you for being the most loving, genuine, and precious soul. I am grateful for you today and every day.</p>
+Thank you for being the most loving, wonderful person in my life.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(8)">Back</button>
         <button class="btn" onclick="nextPage(10)">Next</button>
       </div>
     </div>
 
-    <!-- PAGE 10: Grand Finale & Heart Blast -->
+    <!-- PAGE 10: No Chapter 10 -->
     <div class="page" id="page-10">
       <h1 class="main-title">Forever & Always ❤️💋</h1>
       <p class="subtitle">Happy Birthday Zia Mummy!</p>
-      <p class="text-body">Here's to celebrating you today and creating a million more unforgettable memories together.</p>
+      <p class="text-body">Here is to celebrating you today and creating countless more memories together.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(9)">Back</button>
         <button class="btn" onclick="blastHearts()">Shower With Love 💖</button>
@@ -382,7 +366,6 @@ Thank you for being the most loving, genuine, and precious soul. I am grateful f
   </div>
 
   <script>
-    // Audio controller
     const audio = document.getElementById('bg-audio');
     const musicBtn = document.getElementById('musicToggle');
 
@@ -399,9 +382,7 @@ Thank you for being the most loving, genuine, and precious soul. I am grateful f
       }
     }
 
-    // Page navigation (1 to 10)
     function nextPage(pageNumber) {
-      // Autoplay audio on first user progression if allowed
       if (audio.paused && pageNumber === 2) {
         audio.play().then(() => {
           musicBtn.textContent = '⏸ Pause Music';
@@ -416,7 +397,7 @@ Thank you for being the most loving, genuine, and precious soul. I am grateful f
       }
     }
 
-    // Real-Time Counter starting November 28, 2004 00:00:00
+    // Set starting point to Nov 28, 2004
     const startDate = new Date('2004-11-28T00:00:00');
 
     function updateTimer() {
@@ -448,7 +429,6 @@ Thank you for being the most loving, genuine, and precious soul. I am grateful f
     setInterval(updateTimer, 1000);
     updateTimer();
 
-    // Floating & Bursting Hearts Canvas
     const canvas = document.getElementById('heart-canvas');
     const ctx = canvas.getContext('2d');
     let hearts = [];
@@ -522,5 +502,3 @@ Thank you for being the most loving, genuine, and precious soul. I am grateful f
   </script>
 </body>
 </html>
-
-
