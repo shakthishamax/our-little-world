@@ -2,475 +2,684 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Happy Birthday Priya ❤️</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@600;700&family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --primary-pink: #ff4b72;
-      --deep-rose: #d6336c;
-      --soft-rose: #fff0f3;
-      --card-bg: rgba(255, 255, 255, 0.94);
-      --text-main: #33272a;
-      --text-muted: #594a4e;
+      --primary-crimson: #e63956;
+      --deep-wine: #72092c;
+      --gold-accent: #f4c430;
+      --card-glass: rgba(20, 5, 12, 0.68);
+      --border-glow: rgba(255, 182, 193, 0.35);
+      --text-gold: #ffe6a7;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ffeef2 0%, #ffd6e0 50%, #fed0dc 100%);
-      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      background: radial-gradient(ellipse at bottom, #2b0816 0%, #0d0107 100%);
+      color: #ffffff;
       min-height: 100vh;
+      overflow-x: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow-x: hidden;
       position: relative;
     }
 
-    #heart-canvas {
+    /* Ambient Spotlight Background FX */
+    .spotlight {
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(230, 57, 86, 0.28) 0%, rgba(0,0,0,0) 70%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: blur(50px);
+      pointer-events: none;
+      z-index: 1;
+      animation: pulseGlow 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+      100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.95; }
+    }
+
+    #cinematic-canvas {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
+    }
+
+    /* Top Cinematic Navigation & Timeline */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(13,1,7,0.9), transparent);
+    }
+
+    .progress-track {
+      flex: 1;
+      max-width: 220px;
+      height: 4px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-right: 15px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 8%;
+      background: linear-gradient(90deg, #ff4d6d, var(--gold-accent));
+      transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .music-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 100;
-      background: white;
-      border: 2px solid var(--primary-pink);
-      color: var(--primary-pink);
-      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      padding: 8px 16px;
       border-radius: 30px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 75, 114, 0.2);
-      transition: all 0.3s ease;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      transition: all 0.3s;
     }
 
-    .music-btn:hover {
-      transform: scale(1.05);
-      background: var(--primary-pink);
-      color: white;
+    .music-btn.playing {
+      border-color: var(--gold-accent);
+      color: var(--gold-accent);
+      box-shadow: 0 0 15px rgba(244, 196, 48, 0.35);
     }
 
-    .app-container {
-      width: 90%;
-      max-width: 620px;
-      min-height: 520px;
+    /* Stage Container */
+    .stage {
+      width: 92%;
+      max-width: 580px;
+      min-height: 580px;
       position: relative;
       z-index: 10;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 40px auto;
+      perspective: 1200px;
+      margin: 70px auto 40px;
     }
 
-    .page {
-      display: none;
+    .scene-card {
+      position: absolute;
       width: 100%;
-      background: var(--card-bg);
-      backdrop-filter: blur(14px);
-      border-radius: 26px;
-      padding: 38px 28px;
-      box-shadow: 0 16px 36px rgba(214, 51, 108, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      background: var(--card-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-glow);
+      border-radius: 28px;
+      padding: 36px 26px 30px;
       text-align: center;
-      animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), inset 0 0 25px rgba(255,255,255,0.04);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(40px) scale(0.92) rotateX(10deg);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .page.active {
-      display: block;
+    .scene-card.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1) rotateX(0deg);
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(22px) scale(0.97);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    h1.main-title {
-      font-family: 'Great Vibes', cursive;
-      color: var(--primary-pink);
-      font-size: 2.7rem;
+    /* Typography */
+    h1.cinema-title {
+      font-family: 'Alex Brush', cursive;
+      color: #fff;
+      font-size: 2.9rem;
       line-height: 1.25;
-      margin-bottom: 16px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.04);
+      text-shadow: 0 0 15px rgba(255, 77, 109, 0.8), 0 0 30px rgba(255, 77, 109, 0.4);
+      margin-bottom: 12px;
     }
 
-    h2.page-title {
-      font-family: 'Caveat', cursive;
-      color: var(--deep-rose);
-      font-size: 2.3rem;
-      margin-bottom: 16px;
+    h2.scene-heading {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 2px;
+      font-size: 1.55rem;
+      color: var(--text-gold);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px rgba(255, 230, 167, 0.4);
     }
 
-    p.subtitle {
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      margin-bottom: 28px;
+    p.whisper {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
     }
 
-    p.text-body {
-      font-size: 1.02rem;
+    p.narration {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.98rem;
       line-height: 1.85;
-      color: var(--text-muted);
+      color: #f1e4e8;
       margin-bottom: 22px;
       white-space: pre-line;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
 
-    .photo-frame {
+    /* Cinematic Ken-Burns Photo Framing */
+    .photo-viewport {
       width: 100%;
-      max-height: 330px;
+      height: 310px;
       border-radius: 20px;
       overflow: hidden;
-      margin: 16px 0 22px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-      border: 5px solid white;
+      position: relative;
+      margin: 14px 0 22px;
+      border: 1px solid rgba(255, 230, 167, 0.45);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.6);
     }
 
-    .photo-frame img {
+    .photo-viewport img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      animation: kenBurns 18s ease-in-out infinite alternate;
     }
 
-    .timer-grid {
+    @keyframes kenBurns {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.12) translate(-2%, -2%); }
+    }
+
+    /* Timer Dial Grid */
+    .timer-constellation {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      margin: 25px 0;
+      margin: 24px 0;
     }
 
-    .time-box {
-      background: var(--soft-rose);
-      padding: 14px 8px;
-      border-radius: 14px;
-      border: 1px solid #ffccd5;
+    .timer-tile {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 182, 193, 0.2);
+      border-radius: 16px;
+      padding: 14px 6px;
+      backdrop-filter: blur(10px);
     }
 
-    .time-box span {
+    .timer-tile .val {
       display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
       font-weight: 700;
-      font-size: 1.55rem;
-      color: var(--deep-rose);
+      color: #ff758f;
+      text-shadow: 0 0 10px rgba(255, 117, 143, 0.5);
     }
 
-    .time-box label {
-      font-size: 0.75rem;
+    .timer-tile .lbl {
+      font-size: 0.68rem;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
+      color: rgba(255, 255, 255, 0.6);
       margin-top: 4px;
       display: block;
     }
 
-    .btn-group {
+    /* Bottom Touch-To-Progress Orb Controller */
+    .controls {
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 14px;
-      margin-top: 26px;
-      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 24px;
     }
 
-    .btn {
-      background: linear-gradient(135deg, var(--primary-pink), var(--deep-rose));
-      color: white;
+    .back-arrow {
+      background: transparent;
       border: none;
-      padding: 13px 30px;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 30px;
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 13px;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(255, 75, 114, 0.3);
-      transition: all 0.25s ease;
-      font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: color 0.3s;
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(255, 75, 114, 0.45);
+    .back-arrow:hover {
+      color: #ffffff;
     }
 
-    .btn-secondary {
-      background: white;
-      color: var(--deep-rose);
-      border: 2px solid var(--deep-rose);
-      box-shadow: none;
+    .cinematic-orb-btn {
+      background: linear-gradient(135deg, #ff4b72, #a4133c);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(255, 75, 114, 0.5), inset 0 0 10px rgba(255,255,255,0.4);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .btn-secondary:hover {
-      background: var(--soft-rose);
+    .cinematic-orb-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 35px rgba(255, 75, 114, 0.8);
+    }
+
+    .cinematic-orb-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* Glowing Ripple Ring on Buttons */
+    .cinematic-orb-btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 140%;
+      height: 140%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      transition: transform 0.5s, opacity 0.5s;
+    }
+    .cinematic-orb-btn:hover::after {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    /* Interactive Wax Sealed Letter Frame */
+    .letter-envelope {
+      background: rgba(43, 8, 22, 0.7);
+      border: 1px solid rgba(244, 196, 48, 0.4);
+      border-radius: 18px;
+      padding: 22px 18px;
+      margin: 18px 0;
+      position: relative;
     }
   </style>
 </head>
 <body>
 
-  <audio id="bg-audio" loop src="song.mp3"></audio>
-  <button class="music-btn" id="musicToggle" onclick="toggleAudio()">🎵 Play Music</button>
+  <audio id="bg-audio" loop preload="auto" src="song.mp3"></audio>
 
-  <canvas id="heart-canvas"></canvas>
+  <div class="spotlight"></div>
+  <canvas id="cinematic-canvas"></canvas>
 
-  <div class="app-container">
-
-    <!-- PAGE 1 -->
-    <div class="page active" id="page-1">
-      <h1 class="main-title">Happy Birthday My Dear Love Priya (Zia Mummy❤️💋)</h1>
-      <p class="subtitle">Are u ready Zia Mummy?</p>
-      <div class="btn-group">
-        <button class="btn" onclick="nextPage(2)">Begin the Celebration</button>
-      </div>
+  <!-- Top Cinema Progress Bar -->
+  <div class="top-bar">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
     </div>
+    <button class="music-btn" id="musicToggle" type="button" onclick="toggleAudio()">
+      <span>🎵</span> <span id="musicLabel">Soundtrack</span>
+    </button>
+  </div>
 
-    <!-- PAGE 2 -->
-    <div class="page" id="page-2">
-      <h2 class="page-title">The World Has Been Blessed With You For</h2>
+  <div class="stage">
+
+    <!-- SCENE 1: Prologue / Grand Introduction -->
+    <div class="scene-card active" id="scene-1">
+      <h1 class="cinema-title">Happy Birthday My Dear Love Priya</h1>
+      <h2 class="scene-heading">(Zia Mummy ❤️💋)</h2>
+      <p class="whisper">Are u ready Zia Mummy?</p>
       
-      <div class="timer-grid">
-        <div class="time-box"><span id="years">0</span><label>Years</label></div>
-        <div class="time-box"><span id="days">0</span><label>Days</label></div>
-        <div class="time-box"><span id="hours">0</span><label>Hours</label></div>
-        <div class="time-box"><span id="minutes">0</span><label>Minutes</label></div>
-        <div class="time-box"><span id="seconds">0</span><label>Seconds</label></div>
-        <div class="time-box"><span id="heartbeats">0</span><label>Heartbeats</label></div>
-      </div>
-
-      <p class="text-body">Every single second since November 28, 2004 has made this world so much sweeter.</p>
-
-      <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(1)">Back</button>
-        <button class="btn" onclick="nextPage(3)">Next</button>
+      <div class="controls">
+        <button class="cinematic-orb-btn" type="button" onclick="launchCinema(2)">
+          Begin The Celebration ✨
+        </button>
       </div>
     </div>
 
-    <!-- PAGE 3 -->
-    <div class="page" id="page-3">
-      <h2 class="page-title">October 15 — The Day Everything Changed</h2>
-      <div class="photo-frame">
-        <img src="photo1.jpg" alt="Memory 1" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80'">
+    <!-- SCENE 2: The Golden Timer (Nov 28, 2004) -->
+    <div class="scene-card" id="scene-2">
+      <h2 class="scene-heading">Constellation Of Moments</h2>
+      <p class="whisper">The world was blessed with your radiant light for:</p>
+      
+      <div class="timer-constellation">
+        <div class="timer-tile"><span class="val" id="years">0</span><span class="lbl">Years</span></div>
+        <div class="timer-tile"><span class="val" id="days">0</span><span class="lbl">Days</span></div>
+        <div class="timer-tile"><span class="val" id="hours">0</span><span class="lbl">Hours</span></div>
+        <div class="timer-tile"><span class="val" id="minutes">0</span><span class="lbl">Minutes</span></div>
+        <div class="timer-tile"><span class="val" id="seconds">0</span><span class="lbl">Seconds</span></div>
+        <div class="timer-tile"><span class="val" id="heartbeats">0</span><span class="lbl">Heartbeats</span></div>
       </div>
-      <p class="text-body">The day you walked into my life is etched into my heart forever. Everything became brighter, happier, and filled with love.</p>
-      <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(2)">Back</button>
-        <button class="btn" onclick="nextPage(4)">Next</button>
-      </div>
-    </div>
 
-    <!-- PAGE 4 -->
-    <div class="page" id="page-4">
-      <h2 class="page-title">Cherished Smiles</h2>
-      <div class="photo-frame">
-        <img src="photo2.jpg" alt="Memory 2" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80'">
-      </div>
-      <p class="text-body">Your smile is my absolute favorite sight in the world, Zia Mummy. Thank you for making every day special.</p>
-      <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(3)">Back</button>
-        <button class="btn" onclick="nextPage(5)">Next</button>
+      <p class="narration">Every quiet breath and every heartbeat since November 28, 2004 was destined to lead to you.</p>
+
+      <div class="controls">
+        <button class="back-arrow" type="button" onclick="goToScene(1)">Previous</button>
+        <button class="cinematic-orb-btn" type="button" onclick="goToScene(3)">Next Chapter 💫</button>
       </div>
     </div>
 
-    <!-- PAGE 5: Featuring Your Beautiful Animated Photo -->
-    <div class="page" id="page-5">
-      <h2 class="page-title">A Million Beautiful Memories</h2>
-      <div class="photo-frame">
-        <img src="family_photo.png" alt="Family Memory" onerror="this.src='https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80'">
+    <!-- SCENE 3: October 15 (photo1.jpg) -->
+    <div class="scene-card" id="scene-3">
+      <h2 class="scene-heading">October 15</h2>
+      <div class="photo-viewport">
+        <img src="photo1.jpg" alt="October 15 Memory">
       </div>
-      <p class="text-body">Through every little step, every shared giggle, and every sweet moment—you make our little world overflow with love and beautiful smiles.</p>
-      <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(4)">Back</button>
-        <button class="btn" onclick="nextPage(6)">Next</button>
-      </div>
-    </div>
-
-    <!-- PAGE 6: Updated Title to 'Our Family' -->
-    <div class="page" id="page-6">
-      <h2 class="page-title">Our Family</h2>
-      <p class="text-body">The way you laugh, your sweet voice, your caring heart, and everything you do. 
-
-Every tiny detail about you makes you so special to me.</p>
-      <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(5)">Back</button>
-        <button class="btn" onclick="nextPage(7)">Next</button>
+      <p class="narration">The day destiny quietly stepped into my path. Everything before October 15 was black and white; zia mummy brought color to my world.</p>
+      <div class="controls">
+        <button class="back-arrow" type="button" onclick="goToScene(2)">Previous</button>
+        <button class="cinematic-orb-btn" type="button" onclick="goToScene(4)">Continue ✨</button>
       </div>
     </div>
 
-    <!-- PAGE 7 -->
-    <div class="page" id="page-7">
-      <h2 class="page-title">Through Every Step Together</h2>
-      <p class="text-body">From our late-night conversations to shared laughter and quiet understanding, each moment brings us closer.</p>
-      <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(6)">Back</button>
-        <button class="btn" onclick="nextPage(8)">Next</button>
+    <!-- SCENE 4: Cherished Smiles (photo2.jpg) -->
+    <div class="scene-card" id="scene-4">
+      <h2 class="scene-heading">Cherished Smiles</h2>
+      <div class="photo-viewport">
+        <img src="photo2.jpg" alt="Smiles Memory">
+      </div>
+      <p class="narration">Your smile is my happiness, Zia Mummy. Whenever life gets loud and choas, the curve of your lips is all I need to feel grounded.</p>
+      <div class="controls">
+        <button class="back-arrow" type="button" onclick="goToScene(3)">Previous</button>
+        <button class="cinematic-orb-btn" type="button" onclick="goToScene(5)">Continue ✨</button>
       </div>
     </div>
 
-    <!-- PAGE 8 -->
-    <div class="page" id="page-8">
-      <h2 class="page-title">My Safe Haven</h2>
-      <p class="text-body">In this busy world, you are my calm peace. Having you in my life gives me endless strength and joy every single day.</p>
-      <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(7)">Back</button>
-        <button class="btn" onclick="nextPage(9)">Next</button>
+    <!-- SCENE 5: Romantic Animation (photo3.jpg) -->
+    <div class="scene-card" id="scene-5">
+      <h2 class="scene-heading">You & Me Always</h2>
+      <div class="photo-viewport">
+        <img src="photo3.jpg" alt="Animation Memory">
+      </div>
+      <p class="narration">Foreheads resting together in the gentle glow, where time completely dissolves. You are my home, my calm, and my forever choice.</p>
+      <div class="controls">
+        <button class="back-arrow" type="button" onclick="goToScene(4)">Previous</button>
+        <button class="cinematic-orb-btn" type="button" onclick="goToScene(6)">Our Little World ✨</button>
       </div>
     </div>
 
-    <!-- PAGE 9 -->
-    <div class="page" id="page-9">
-      <h2 class="page-title">Promises From My Heart</h2>
-      <p class="text-body">I promise to always listen and understand.
-I promise to stand by you in every situation.
-I promise to cherish and care for your precious heart forever.</p>
-      <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(8)">Back</button>
-        <button class="btn" onclick="nextPage(10)">Next</button>
+    <!-- SCENE 6: Our Family (photo4.jpg) -->
+    <div class="scene-card" id="scene-6">
+      <h2 class="scene-heading">Our Family</h2>
+      <div class="photo-viewport">
+        <img src="photo4.jpg" alt="Our Family Animation">
+      </div>
+      <p class="narration">The laughter, the shared smiles, and the purest kind of happiness. Thank you for making our little world feel like heaven on earth.</p>
+      <div class="controls">
+        <button class="back-arrow" type="button" onclick="goToScene(5)">Previous</button>
+        <button class="cinematic-orb-btn" type="button" onclick="goToScene(7)">Continue ✨</button>
       </div>
     </div>
 
-    <!-- PAGE 10 -->
-    <div class="page" id="page-10">
-      <h2 class="page-title">A Letter For You, Priya</h2>
-      <p class="text-body">My dearest Zia Mummy,
+    <!-- SCENE 7: The Little Things -->
+    <div class="scene-card" id="scene-7">
+      <h2 class="scene-heading">The Little Wonders</h2>
+      <p class="narration">It is in the quiet subtleties:
+The melody of your real laugh.
+The gentle innocence in your eyes.
+The way you touch my life with kindness every single second.
 
-May this birthday bring you boundless happiness, peace, good health, and everything your gentle heart desires. 
-
-Thank you for being the most loving, wonderful person in my life.</p>
-      <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(9)">Back</button>
-        <button class="btn" onclick="nextPage(11)">Next</button>
+The universe crafted you with unmatched perfection.</p>
+      <div class="controls">
+        <button class="back-arrow" type="button" onclick="goToScene(6)">Previous</button>
+        <button class="cinematic-orb-btn" type="button" onclick="goToScene(8)">Continue ✨</button>
       </div>
     </div>
 
-    <!-- PAGE 11 -->
-    <div class="page" id="page-11">
-      <h1 class="main-title">Forever & Always ❤️💋</h1>
-      <p class="subtitle">Happy Birthday Zia Mummy!</p>
-      <p class="text-body">Here is to celebrating you today and creating countless more memories together.</p>
-      <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(10)">Back</button>
-        <button class="btn" onclick="blastHearts()">Shower With Love 💖</button>
+    <!-- SCENE 8: Through Every Step Together -->
+    <div class="scene-card" id="scene-8">
+      <h2 class="scene-heading">Every Step Beside You</h2>
+      <p class="narration">From silent late-night understandings to loud celebrations, walking through life is easy because my fingers are locked in yours.</p>
+      <div class="controls">
+        <button class="back-arrow" type="button" onclick="goToScene(7)">Previous</button>
+        <button class="cinematic-orb-btn" type="button" onclick="goToScene(9)">Continue ✨</button>
+      </div>
+    </div>
+
+    <!-- SCENE 9: Safe Haven -->
+    <div class="scene-card" id="scene-9">
+      <h2 class="scene-heading">My Safe Haven</h2>
+      <p class="narration">Out there, the world moves at lightning speed. But right here with you, my soul finds complete peace and silence.</p>
+      <div class="controls">
+        <button class="back-arrow" type="button" onclick="goToScene(8)">Previous</button>
+        <button class="cinematic-orb-btn" type="button" onclick="goToScene(10)">My Vow 💫</button>
+      </div>
+    </div>
+
+    <!-- SCENE 10: Promises -->
+    <div class="scene-card" id="scene-10">
+      <h2 class="scene-heading">Promises In Ink</h2>
+      <p class="narration">I promise to always listen before I speak.
+I promise to hold your umbrella during every storm.
+I promise to love you on the hard days just as fiercely as the brightest ones.</p>
+      <div class="controls">
+        <button class="back-arrow" type="button" onclick="goToScene(9)">Previous</button>
+        <button class="cinematic-orb-btn" type="button" onclick="goToScene(11)">Open Letter 💌</button>
+      </div>
+    </div>
+
+    <!-- SCENE 11: Letter -->
+    <div class="scene-card" id="scene-11">
+      <h2 class="scene-heading">A Letter For You, Priya</h2>
+      <div class="letter-envelope">
+        <p class="narration">My sweetest Zia Mummy,
+
+May this birthday bestow upon you radiant health, serenity, and every dream your gentle heart carries.
+
+Thank you for being the most pure-hearted person in my life. I cherish you deeply.</p>
+      </div>
+      <div class="controls">
+        <button class="back-arrow" type="button" onclick="goToScene(10)">Previous</button>
+        <button class="cinematic-orb-btn" type="button" onclick="goToScene(12)">The Grand Finale 🎆</button>
+      </div>
+    </div>
+
+    <!-- SCENE 12: Grand Finale -->
+    <div class="scene-card" id="scene-12">
+      <h1 class="cinema-title">Forever & Always ❤️💋</h1>
+      <h2 class="scene-heading">Happy Birthday Zia Mummy!</h2>
+      <p class="narration">To a lifetime of more memories, countless smiles, and an eternity of us together.</p>
+      <div class="controls">
+        <button class="back-arrow" type="button" onclick="goToScene(11)">Previous</button>
+        <button class="cinematic-orb-btn" type="button" onclick="sparkleExplosion()">Shower Eternal Love 💖</button>
       </div>
     </div>
 
   </div>
 
   <script>
+    const totalScenes = 12;
+    let currentScene = 1;
     const audio = document.getElementById('bg-audio');
     const musicBtn = document.getElementById('musicToggle');
+    const musicLabel = document.getElementById('musicLabel');
 
     function toggleAudio() {
+      if (!audio) return;
       if (audio.paused) {
         audio.play().then(() => {
-          musicBtn.textContent = '⏸ Pause Music';
-        }).catch(err => {
-          console.log('Audio playback waiting for interaction');
-        });
+          musicBtn.classList.add('playing');
+          musicLabel.textContent = 'Playing';
+        }).catch(e => console.log('Audio wait tap', e));
       } else {
         audio.pause();
-        musicBtn.textContent = '🎵 Play Music';
+        musicBtn.classList.remove('playing');
+        musicLabel.textContent = 'Soundtrack';
       }
     }
 
-    function nextPage(pageNumber) {
-      if (audio.paused && pageNumber === 2) {
+    function launchCinema(nextId) {
+      if (audio && audio.paused) {
         audio.play().then(() => {
-          musicBtn.textContent = '⏸ Pause Music';
+          musicBtn.classList.add('playing');
+          musicLabel.textContent = 'Playing';
         }).catch(() => {});
       }
+      goToScene(nextId);
+    }
 
-      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-      const targetPage = document.getElementById(`page-${pageNumber}`);
-      if (targetPage) {
-        targetPage.classList.add('active');
+    function goToScene(sceneNum) {
+      currentScene = sceneNum;
+      
+      // Update progress bar
+      const progressPercent = (sceneNum / totalScenes) * 100;
+      document.getElementById('progressFill').style.width = progressPercent + '%';
+
+      // Switch active scene card
+      document.querySelectorAll('.scene-card').forEach(card => card.classList.remove('active'));
+      const activeCard = document.getElementById('scene-' + sceneNum);
+      if (activeCard) {
+        activeCard.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
+
+      // Sparkle burst on slide change
+      burstSparkles(window.innerWidth / 2, window.innerHeight * 0.45, 25);
     }
 
-    const startDate = new Date('2004-11-28T00:00:00');
-
+    // Live Constellation Timer (Nov 28, 2004)
+    const birthDate = new Date('2004-11-28T00:00:00');
     function updateTimer() {
-      const now = new Date();
-      let diffMs = now - startDate;
+      const diff = new Date() - birthDate;
+      const totalSec = Math.floor(diff / 1000);
+      const totalMin = Math.floor(totalSec / 60);
+      const totalHrs = Math.floor(totalMin / 60);
+      const totalDays = Math.floor(totalHrs / 24);
 
-      if (diffMs < 0) diffMs = 0;
+      const yrs = Math.floor(totalDays / 365.25);
+      const remDays = Math.floor(totalDays % 365.25);
+      const hrs = totalHrs % 24;
+      const mins = totalMin % 60;
+      const secs = totalSec % 60;
+      const beats = Math.floor(totalMin * 75);
 
-      const totalSeconds = Math.floor(diffMs / 1000);
-      const totalMinutes = Math.floor(totalSeconds / 60);
-      const totalHours = Math.floor(totalMinutes / 60);
-      const totalDays = Math.floor(totalHours / 24);
+      const yEl = document.getElementById('years');
+      const dEl = document.getElementById('days');
+      const hEl = document.getElementById('hours');
+      const mEl = document.getElementById('minutes');
+      const sEl = document.getElementById('seconds');
+      const bEl = document.getElementById('heartbeats');
 
-      const years = Math.floor(totalDays / 365.25);
-      const days = Math.floor(totalDays % 365.25);
-      const hours = totalHours % 24;
-      const minutes = totalMinutes % 60;
-      const seconds = totalSeconds % 60;
-      const heartbeats = Math.floor(totalMinutes * 75);
-
-      document.getElementById('years').innerText = years;
-      document.getElementById('days').innerText = days;
-      document.getElementById('hours').innerText = hours;
-      document.getElementById('minutes').innerText = minutes;
-      document.getElementById('seconds').innerText = seconds;
-      document.getElementById('heartbeats').innerText = heartbeats.toLocaleString();
+      if (yEl) yEl.innerText = yrs;
+      if (dEl) dEl.innerText = remDays;
+      if (hEl) hEl.innerText = hrs;
+      if (mEl) mEl.innerText = mins;
+      if (sEl) sEl.innerText = secs;
+      if (bEl) bEl.innerText = beats.toLocaleString();
     }
-
     setInterval(updateTimer, 1000);
     updateTimer();
 
-    const canvas = document.getElementById('heart-canvas');
+    // Cinematic Canvas Particle & Stardust Engine
+    const canvas = document.getElementById('cinematic-canvas');
     const ctx = canvas.getContext('2d');
-    let hearts = [];
+    let particles = [];
 
-    function resizeCanvas() {
+    function resize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+    window.addEventListener('resize', resize);
+    resize();
 
-    class Heart {
-      constructor(x, y, isBurst = false) {
+    class Particle {
+      constructor(x, y, isExplosion = false) {
         this.x = x || Math.random() * canvas.width;
-        this.y = y || canvas.height + 20;
-        this.size = Math.random() * 14 + 10;
-        this.speedY = isBurst ? (Math.random() - 0.5) * 10 : -(Math.random() * 1.6 + 1);
-        this.speedX = isBurst ? (Math.random() - 0.5) * 10 : (Math.random() - 0.5) * 1.2;
-        this.opacity = 1;
-        this.decay = isBurst ? Math.random() * 0.02 + 0.012 : 0.0035;
-        this.color = ['#ff4b72', '#ff758f', '#ffb3c1', '#d6336c'][Math.floor(Math.random() * 4)];
+        this.y = y || Math.random() * canvas.height;
+        this.radius = isExplosion ? Math.random() * 4 + 2 : Math.random() * 2 + 1;
+        this.vx = isExplosion ? (Math.random() - 0.5) * 12 : (Math.random() - 0.5) * 0.8;
+        this.vy = isExplosion ? (Math.random() - 0.5) * 12 : -(Math.random() * 0.8 + 0.3);
+        this.alpha = 1;
+        this.decay = isExplosion ? Math.random() * 0.02 + 0.01 : 0.003;
+        this.color = ['#ff758f', '#ffe6a7', '#ffffff', '#ff4d6d'][Math.floor(Math.random() * 4)];
+        this.isHeart = Math.random() > 0.65;
       }
 
       draw() {
         ctx.save();
-        ctx.globalAlpha = this.opacity;
+        ctx.globalAlpha = this.alpha;
         ctx.fillStyle = this.color;
-        ctx.beginPath();
-        const topCurveHeight = this.size * 0.3;
-        ctx.moveTo(this.x, this.y + topCurveHeight);
-        ctx.bezierCurveTo(this.x, this.y, this.x - this.size / 2, this.y, this.x - this.size / 2, this.y + topCurveHeight);
-        ctx.bezierCurveTo(this.x - this.size / 2, this.y + (this.size + topCurveHeight) / 2, this.x, this.y + this.size, this.x, this.y + this.size);
-        ctx.bezierCurveTo(this.x, this.y + this.size, this.x + this.size / 2, this.y + (this.size + topCurveHeight) / 2, this.x + this.size / 2, this
+        if (this.isHeart) {
+          ctx.beginPath();
+          const s = this.radius * 2.2;
+          ctx.moveTo(this.x, this.y);
+          ctx.bezierCurveTo(this.x - s/2, this.y - s/2, this.x - s, this.y + s/3, this.x, this.y + s);
+          ctx.bezierCurveTo(this.x + s, this.y + s/3, this.x + s/2, this.y - s/2, this.x, this.y);
+          ctx.fill();
+        } else {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.alpha -= this.decay;
+      }
+    }
+
+    function renderParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (Math.random() < 0.12) {
+        particles.push(new Particle(Math.random() * canvas.width, canvas.height + 10));
+      }
+      particles.forEach((p, idx) => {
+        p.update();
+        p.draw();
+        if (p.alpha <= 0) particles.splice(idx, 1);
+      });
+      requestAnimationFrame(renderParticles);
+    }
+    renderParticles();
+
+    function burstSparkles(x, y, count = 50) {
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle(x, y, true));
+      }
+    }
+
+    function sparkleExplosion() {
+      for (let i = 0; i < 120; i++) {
+        particles.push(new Particle(window.innerWidth / 2, window.innerHeight / 2, true));
+      }
+    }
+
+    // Touch screen to spawn stardust
+    window.addEventListener('click', (e) => {
+      burstSparkles(e.clientX, e.clientY, 10);
+    });
+  </script>
+</body>
+</html>
