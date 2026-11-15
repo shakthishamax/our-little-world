@@ -193,27 +193,31 @@
       margin-bottom: 22px;
       white-space: pre-line;
       text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-    }
-
-    /* Cinematic Ken-Burns Photo Framing */
-    .photo-viewport {
+  
+        .photo-viewport {
       width: 100%;
-      height: 310px;
+      max-height: 420px;
       border-radius: 20px;
       overflow: hidden;
       position: relative;
       margin: 14px 0 22px;
       border: 1px solid rgba(255, 230, 167, 0.45);
       box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .photo-viewport img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      max-height: 420px;
+      object-fit: contain;
       display: block;
-      animation: kenBurns 18s ease-in-out infinite alternate;
+      border-radius: 18px;
     }
+
 
     @keyframes kenBurns {
       0% { transform: scale(1) translate(0, 0); }
@@ -394,7 +398,7 @@
       <div class="photo-viewport">
         <img src="photo1.jpg" alt="October 15 Memory">
       </div>
-      <p class="narration">The day destiny quietly stepped into my path. Everything before October 15 was black and white; zia mummy brought color to my world.</p>
+      <p class="narration">The day destiny quietly stepped into my path. Everything before October 15 was black and white; having you brought color to my world.</p>
       <div class="controls">
         <button class="back-arrow" type="button" onclick="goToScene(2)">Previous</button>
         <button class="cinematic-orb-btn" type="button" onclick="goToScene(4)">Continue ✨</button>
@@ -407,7 +411,7 @@
       <div class="photo-viewport">
         <img src="photo2.jpg" alt="Smiles Memory">
       </div>
-      <p class="narration">Your smile is my happiness, Zia Mummy. Whenever life gets loud and choas, the curve of your lips is all I need to feel grounded.</p>
+      <p class="narration">Your smile is my sanctuary, Zia Mummy. Whenever life gets loud and hurried, the curve of your lips is all I need to feel grounded.</p>
       <div class="controls">
         <button class="back-arrow" type="button" onclick="goToScene(3)">Previous</button>
         <button class="cinematic-orb-btn" type="button" onclick="goToScene(5)">Continue ✨</button>
