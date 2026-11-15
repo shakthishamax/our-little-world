@@ -145,7 +145,7 @@
 
     .photo-frame {
       width: 100%;
-      max-height: 330px;
+      max-height: 340px;
       border-radius: 20px;
       overflow: hidden;
       margin: 16px 0 22px;
@@ -247,7 +247,7 @@
       </div>
     </div>
 
-    <!-- PAGE 2 -->
+    <!-- PAGE 2: Timer from Nov 28, 2004 -->
     <div class="page" id="page-2">
       <h2 class="page-title">The World Has Been Blessed With You For</h2>
       
@@ -268,7 +268,7 @@
       </div>
     </div>
 
-    <!-- PAGE 3 -->
+    <!-- PAGE 3: October 15 -->
     <div class="page" id="page-3">
       <h2 class="page-title">October 15 — The Day Everything Changed</h2>
       <div class="photo-frame">
@@ -281,7 +281,7 @@
       </div>
     </div>
 
-    <!-- PAGE 4 -->
+    <!-- PAGE 4: Cherished Smiles -->
     <div class="page" id="page-4">
       <h2 class="page-title">Cherished Smiles</h2>
       <div class="photo-frame">
@@ -294,25 +294,26 @@
       </div>
     </div>
 
-    <!-- PAGE 5: Featuring Your Beautiful Animated Photo -->
+    <!-- PAGE 5 (PHOTO 1 AFTER CHERISHED SMILES): Animated Couple Photo -->
     <div class="page" id="page-5">
-      <h2 class="page-title">A Million Beautiful Memories</h2>
+      <h2 class="page-title">You & Me Always</h2>
       <div class="photo-frame">
-        <img src="family_photo.png" alt="Family Memory" onerror="this.src='https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80'">
+        <img src="photo3.jpg" alt="Animated Romantic Photo" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80'">
       </div>
-      <p class="text-body">Through every little step, every shared giggle, and every sweet moment—you make our little world overflow with love and beautiful smiles.</p>
+      <p class="text-body">Close to my heart, right where you belong. Every glance, every touch, and every heartbeat is always for you.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(4)">Back</button>
         <button class="btn" onclick="nextPage(6)">Next</button>
       </div>
     </div>
 
-    <!-- PAGE 6: Updated Title to 'Our Family' -->
+    <!-- PAGE 6 (PHOTO 2 AFTER CHERISHED SMILES): Our Family Animated Photo -->
     <div class="page" id="page-6">
       <h2 class="page-title">Our Family</h2>
-      <p class="text-body">The way you laugh, your sweet voice, your caring heart, and everything you do. 
-
-Every tiny detail about you makes you so special to me.</p>
+      <div class="photo-frame">
+        <img src="family_photo.png" alt="Our Family" onerror="this.src='photo4.jpg'">
+      </div>
+      <p class="text-body">Through every little step, every shared giggle, and every sweet moment—you make our little world overflow with love and beautiful smiles.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(5)">Back</button>
         <button class="btn" onclick="nextPage(7)">Next</button>
@@ -321,8 +322,10 @@ Every tiny detail about you makes you so special to me.</p>
 
     <!-- PAGE 7 -->
     <div class="page" id="page-7">
-      <h2 class="page-title">Through Every Step Together</h2>
-      <p class="text-body">From our late-night conversations to shared laughter and quiet understanding, each moment brings us closer.</p>
+      <h2 class="page-title">The Little Things I Love</h2>
+      <p class="text-body">The way you laugh, your sweet voice, your caring heart, and everything you do. 
+
+Every tiny detail about you makes you so special to me.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(6)">Back</button>
         <button class="btn" onclick="nextPage(8)">Next</button>
@@ -331,8 +334,8 @@ Every tiny detail about you makes you so special to me.</p>
 
     <!-- PAGE 8 -->
     <div class="page" id="page-8">
-      <h2 class="page-title">My Safe Haven</h2>
-      <p class="text-body">In this busy world, you are my calm peace. Having you in my life gives me endless strength and joy every single day.</p>
+      <h2 class="page-title">Through Every Step Together</h2>
+      <p class="text-body">From our late-night conversations to shared laughter and quiet understanding, each moment brings us closer.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(7)">Back</button>
         <button class="btn" onclick="nextPage(9)">Next</button>
@@ -341,10 +344,8 @@ Every tiny detail about you makes you so special to me.</p>
 
     <!-- PAGE 9 -->
     <div class="page" id="page-9">
-      <h2 class="page-title">Promises From My Heart</h2>
-      <p class="text-body">I promise to always listen and understand.
-I promise to stand by you in every situation.
-I promise to cherish and care for your precious heart forever.</p>
+      <h2 class="page-title">My Safe Haven</h2>
+      <p class="text-body">In this busy world, you are my calm peace. Having you in my life gives me endless strength and joy every single day.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(8)">Back</button>
         <button class="btn" onclick="nextPage(10)">Next</button>
@@ -353,12 +354,10 @@ I promise to cherish and care for your precious heart forever.</p>
 
     <!-- PAGE 10 -->
     <div class="page" id="page-10">
-      <h2 class="page-title">A Letter For You, Priya</h2>
-      <p class="text-body">My dearest Zia Mummy,
-
-May this birthday bring you boundless happiness, peace, good health, and everything your gentle heart desires. 
-
-Thank you for being the most loving, wonderful person in my life.</p>
+      <h2 class="page-title">Promises From My Heart</h2>
+      <p class="text-body">I promise to always listen and understand.
+I promise to stand by you in every situation.
+I promise to cherish and care for your precious heart forever.</p>
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="nextPage(9)">Back</button>
         <button class="btn" onclick="nextPage(11)">Next</button>
@@ -367,11 +366,25 @@ Thank you for being the most loving, wonderful person in my life.</p>
 
     <!-- PAGE 11 -->
     <div class="page" id="page-11">
+      <h2 class="page-title">A Letter For You, Priya</h2>
+      <p class="text-body">My dearest Zia Mummy,
+
+May this birthday bring you boundless happiness, peace, good health, and everything your gentle heart desires. 
+
+Thank you for being the most loving, wonderful person in my life.</p>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="nextPage(10)">Back</button>
+        <button class="btn" onclick="nextPage(12)">Next</button>
+      </div>
+    </div>
+
+    <!-- PAGE 12 -->
+    <div class="page" id="page-12">
       <h1 class="main-title">Forever & Always ❤️💋</h1>
       <p class="subtitle">Happy Birthday Zia Mummy!</p>
       <p class="text-body">Here is to celebrating you today and creating countless more memories together.</p>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="nextPage(10)">Back</button>
+        <button class="btn btn-secondary" onclick="nextPage(11)">Back</button>
         <button class="btn" onclick="blastHearts()">Shower With Love 💖</button>
       </div>
     </div>
